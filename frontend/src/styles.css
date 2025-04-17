@@ -1,0 +1,41 @@
+:root {
+    --rosa1: rgb(251, 180, 198);
+    --rosa-chicle1: rgb(255, 98, 151);
+    --rosa-chicle2: #cc4e78;
+    --blanco: rgb(249, 249, 249);
+    --text-color: #33141e;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+
+/* fondo de login y signup */
+body.auth-layout {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* para que ocupe el 100% de la pantalla del dispositivo*/
+    width: 100vw; /* para que ocupe el 100% de la pantalla del dispositivo*/
+    margin: 0;
+    background-image: linear-gradient(rgba(51, 20, 30, 0.13), rgba(51, 20, 30, 0.13)), url('/assets/fondoContenido.jpg');
+    background-size: cover; /* para que la imagen ocupe todo el fondo */
+    background-position: center; /* para centrar la imagen de fondo */
+    background-repeat: no-repeat; /* para que no se repita la imagen de fondo */
+}
+
+@media screen and (max-width: 700px) {
+    body.auth-layout {
+        display: block;
+    }
+}

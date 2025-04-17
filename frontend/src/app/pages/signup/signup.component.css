@@ -1,0 +1,139 @@
+.login-container {
+    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    border: var(--blanco) solid 1px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(249, 249, 249, 0.2); /* fondo translúcido */
+    padding: 20px;
+    width: 350px;
+    height: 470px;
+    box-shadow:
+        0 0 15px rgba(249, 249, 249, 0.6),     /* brillo blanco cerca */
+        0 0 15px rgba(251, 180, 198, 0.4),    /* rosa medio */
+        0 0 15px rgba(251, 251, 251, 0.2);
+}
+
+.login-container p {
+    text-align: center;
+    color: var(--text-color);
+}
+
+.login-container a {
+    text-align: center;
+    font-weight: 600;
+    color: var(--rosa-chicle1);
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* margin: auto; */
+    gap: 10px;
+}
+
+.login-container form h2 {
+    display: none;
+}
+
+.icon-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(6px);                
+    padding: 5px 10px;
+}
+
+.icon-input .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+.icon-input input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 15px;
+    width: 100%;
+}
+
+.icon-input input::placeholder {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.icon-input input:focus {
+    border: 1px solid var(--rosa1);
+    box-shadow: 0 0 5px var(--rosa1);
+}
+
+.icon-input input:focus::placeholder {
+    color: var(--rosa1);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+}
+
+.login-btn {
+    width: auto;
+    margin: auto;
+    padding: 10px;
+    background-color: var(--rosa-chicle1);
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 17px;
+}
+.login-btn:hover {
+    background-color: var(--rosa-chicle2);
+}
+
+.login-icon {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -290%); /* Centra el icono en el contenedor */
+    width: 100px;         /* Ajusta el tamaño a gusto */
+    height: 100px;
+    background-color: var(--rosa1); 
+    border-radius: 50%;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-icon svg {
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (max-width: 700px) {
+    .login-container {
+        width: 100%;
+        height: 100%;
+        align-items: center;
+    }
+    
+    .login-icon {
+        display: none;
+    }
+
+    .login-container form h2 {
+        font-family: "Inknut Antiqua", serif;
+        font-weight: 400;
+        font-style: normal;
+        display: block;
+        color: var(--text-color);
+        margin-bottom: 15px;
+    }
+}
