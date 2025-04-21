@@ -13,6 +13,13 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasApiTokens;
 
+    /*
+    * constantes
+    */
+    const ROLE_USER = 'user';
+    const ROLE_ADMIN = 'admin';
+    const ROLE_PROF = 'prof';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -46,5 +53,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    /**
+     * Relación: Un usuario puede ser un profesional.
+     */
+    public function profesional(){
+        return $this->hasOne(Profesional::class, 'id_user');
+    }
+
+    /**
+     * Relación: Un usuario puede tener temas favoritos.
+     */
+    public function favoritos(){
+        return $this->belongsToMany(Tema::class, 'favoritos', 'id_user', 'id_tema')
+                    ->withTimestamps()
+                    ->using(Favorito::class); // 👈 Si usas el modelo personalizado
     }
 }
