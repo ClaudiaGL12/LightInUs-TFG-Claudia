@@ -100,7 +100,7 @@ Otras plataformas no ofrecen:
 
 ##  3. Modelo y Diseño de la Base de Datos
 
-![base de datos](https://drive.google.com/file/d/1n7ca6Gapt9KKKo-u0p4kWmT0--_f3-rI/view?usp=drive_link)
+![base de datos](https://drive.google.com/file/d/1u8luC4revwsJai8mN5nGKH-RdpsRYAcb/view?usp=drive_link)
 
 ---
 
@@ -131,4 +131,4 @@ Diseño adaptable en desarrollo:
 - Planes personalizados
 - Perfil y logout
 - Gestión (solo administradores)
-![mapa de navegación](https://drive.google.com/file/d/1AbmeSRiusVYv6BYoWWzGwuivFL_5QKQp/view?usp=drive_link)
+![mapa de navegación](https://drive.google.com/file/d/1y2v2F5N1IYU9iM7-krzQgzfPbuenU-Ji/view?usp=drive_link)
