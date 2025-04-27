@@ -15,9 +15,4 @@ export const routes: Routes = [
           { path: 'signup', loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent) },
         ],
       },
-    //{path: '', component: HomeComponent, title: 'Home'},
-    // {path: 'login', component: LoginComponent, title: 'Login'},
-    // {path: 'signup', component: SignupComponent, title: 'Sign up'},
-    // {path: 'temas', component: TemasComponent, title: 'Temas'},
-    // {path: 'temas/:id', component: TemaComponent, title: 'Tema'},
 ];
