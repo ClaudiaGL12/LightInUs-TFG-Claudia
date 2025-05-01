@@ -36,11 +36,7 @@ export class SignupComponent {
   }
 
   private handleResponse(response: any): void {
-    if (response.status === 201) {
-      this.router.navigate(['/login']);
-    } else {
-      this.errors = response.errors;
-    }
+    this.router.navigateByUrl('/login');
   }
 
   private handleErrors(errors: any): void {

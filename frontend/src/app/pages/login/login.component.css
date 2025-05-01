@@ -9,7 +9,9 @@
     background-color: rgba(249, 249, 249, 0.2); /* fondo translúcido */
     padding: 20px;
     width: 350px;
-    height: 350px;
+    height: auto;
+    padding-top: 20%;
+    border-radius: 20px;
     box-shadow:
         0 0 15px rgba(249, 249, 249, 0.6),     /* brillo blanco cerca */
         0 0 15px rgba(251, 180, 198, 0.4),    /* rosa medio */
@@ -39,23 +41,24 @@
     display: none;
 }
 
-.icon-input {
+.form-group {
     position: relative;
     display: flex;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.3); 
-    backdrop-filter: blur(6px);                
+    backdrop-filter: blur(6px);    
+    border-radius: 5px;            
     padding: 5px 10px;
 }
 
-.icon-input .icon {
+.form-group .icon {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 5px;
 }
 
-.icon-input input {
+.form-group input {
     border: none;
     outline: none;
     background: transparent;
@@ -64,17 +67,18 @@
     width: 100%;
 }
 
-.icon-input input::placeholder {
+.form-group input::placeholder {
     color: var(--text-color);
     font-weight: bold;
 }
 
-.icon-input input:focus {
+.form-group input:focus {
     border: 1px solid var(--rosa1);
+    border-radius: 5px;
     box-shadow: 0 0 5px var(--rosa1);
 }
 
-.icon-input input:focus::placeholder {
+.form-group input:focus::placeholder {
     color: var(--rosa1);
 }
 
@@ -100,10 +104,8 @@
 
 .login-icon {
     position: absolute;
-    right: 50%;
-    top: 50%;
-    transform: translate(50%, -230%); /* Centra el icono en el contenedor */
-    width: 100px;         /* Ajusta el tamaño a gusto */
+    top: -50px;
+    width: 100px;
     height: 100px;
     background-color: var(--rosa1); 
     border-radius: 50%;   
@@ -115,15 +117,24 @@
 .login-icon svg {
     width: 50px;
     height: 50px;
-    fill: var(--blanco);
+}
+
+.error {
+    margin-bottom: 15px;
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
 }
 
 @media screen and (max-width: 700px) {
     .login-container {
-        border: none;
         width: 100%;
         height: 100%;
         align-items: center;
+        border: none;
+        border-radius: 0;
+        padding-top: 0;
     }
     
     .login-icon {
