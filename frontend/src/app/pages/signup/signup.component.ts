@@ -23,7 +23,7 @@ export class SignupComponent {
       name: [''],
       email: [''],
       password: [''],
-      passwordConfirmation: ['']
+      password_confirmation: ['']
     });
   }
 
@@ -49,6 +49,8 @@ export class SignupComponent {
   }
 
   private cleanErrors(): void {
-    this.errors = null;
+    setTimeout(() => {
+      this.errors = null;
+    }, 4000);
   }
 }

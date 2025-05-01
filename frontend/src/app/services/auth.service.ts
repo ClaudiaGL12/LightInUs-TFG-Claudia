@@ -12,7 +12,13 @@ import { UserRegister } from '../models/user-register.model';
 export class AuthService {
   private readonly apiURL = environment.apiURL;
 
-  constructor(private http: HttpClient) {   }
+  constructor(private http: HttpClient) {
+    // Set the API URL based on the environment
+    console.log('API URL:', this.apiURL);
+    if (environment.apiURL === '') {
+      this.apiURL = 'http://localhost:8000/api'; // Default to localhost if not set
+    }
+  }
   
   login(credentials: AuthCredentials): Observable<any> {
     return this.http.post(`${this.apiURL}/login`, credentials);

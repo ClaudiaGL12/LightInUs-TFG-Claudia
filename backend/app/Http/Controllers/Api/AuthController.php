@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use App\Http\Requests\SingupRequest;
+use App\Http\Requests\SignupRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -33,7 +33,7 @@ class AuthController extends Controller
         ], Response::HTTP_OK);
     }
 
-    public function singup(SingupRequest $request): JsonResponse
+    public function signup(SignupRequest $request): JsonResponse
     {
         $user = User::create($request->validated());
         return response()->json([

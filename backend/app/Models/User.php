@@ -69,6 +69,6 @@ class User extends Authenticatable
     public function favoritos(){
         return $this->belongsToMany(Tema::class, 'favoritos', 'id_user', 'id_tema')
                     ->withTimestamps()
-                    ->using(Favorito::class); // 👈 Si usas el modelo personalizado
+                    ->using(Favorito::class); 
     }
 }
