@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.css'
 })
