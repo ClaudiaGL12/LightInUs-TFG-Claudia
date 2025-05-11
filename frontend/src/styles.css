@@ -1,9 +1,21 @@
 :root {
-    --rosa1: rgb(251, 180, 198);
-    --rosa-chicle1: rgb(255, 98, 151);
-    --rosa-chicle2: #cc4e78;
+    --rosa1: #FDE7ED;
+    --rosa2: #FBB4C6;
+    --rosa3: rgb(248, 132, 161);
+    --rosa4: #F6537C;
+    --rosa5: #F32358;
+    --rosa-chicle1: #FF92B7;
+    --rosa-chicle2: #FF6296;
+    --rosa-chicle3: #CC4E78;
+    --rosa-chicle4: #993B5A;
+    --rosa-chicle5: #33141E;
+    --verde1: #D0FCD6;
+    --verde2: #BBFAC4;
+    --verde3: #A0F8AD;
+    --verde4: #7AF58D;
+    --verde5: #67F47C;
     --blanco: rgb(249, 249, 249);
-    --text-color: #33141e;
+    --text-color: #33141E;
 }
 
 *{
@@ -18,6 +30,27 @@ body, html {
     height: 100%;
 }
 
+body{
+    background-color: var(--blanco);
+}
+
+/*para formato movil y no movil*/
+/* .movil {
+    display: none;
+}
+
+.no-movil {
+    display: block;
+}
+
+@media screen and (max-width: 1000px) {
+    .movil {
+        display: block;
+    }
+    .no-movil {
+        display: none;
+    }
+} */
 
 /* fondo de login y signup */
 body.auth-layout {

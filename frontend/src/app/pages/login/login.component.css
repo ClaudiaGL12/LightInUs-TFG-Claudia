@@ -26,7 +26,7 @@
 .login-container a {
     text-align: center;
     font-weight: 600;
-    color: var(--rosa-chicle1);
+    color: var(--rosa-chicle2);
 }
 
 .login-container form {
@@ -73,13 +73,13 @@
 }
 
 .form-group input:focus {
-    border: 1px solid var(--rosa1);
+    border: 1px solid var(--rosa2);
     border-radius: 5px;
-    box-shadow: 0 0 5px var(--rosa1);
+    box-shadow: 0 0 5px var(--rosa2);
 }
 
 .form-group input:focus::placeholder {
-    color: var(--rosa1);
+    color: var(--rosa2);
 }
 
 .form-group input {
@@ -91,7 +91,7 @@
     width: auto;
     margin: auto;
     padding: 10px;
-    background-color: var(--rosa-chicle1);
+    background-color: var(--rosa-chicle2);
     color: #fff;
     border: none;
     border-radius: 15px;
@@ -99,7 +99,7 @@
     font-size: 17px;
 }
 .login-btn:hover {
-    background-color: var(--rosa-chicle2);
+    background-color: var(--rosa-chicle3);
 }
 
 .login-icon {
@@ -107,7 +107,7 @@
     top: -50px;
     width: 100px;
     height: 100px;
-    background-color: var(--rosa1); 
+    background-color: var(--rosa2); 
     border-radius: 50%;   
     display: flex;
     align-items: center;

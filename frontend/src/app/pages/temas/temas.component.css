@@ -1,0 +1,107 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 50px 0;
+}
+
+.cont-temas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: top;
+    gap: 20px;
+    margin-top: 20px;
+
+    .tema{
+        width: 400px;
+        border-radius: 15px;
+        background-color: var(--blanco);
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        .tema-header{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            .title{
+                background-color: var(--rosa2);
+                position: relative;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                gap: 10px;
+
+                p{
+                    font-size: 25px;
+                    color: var(--blanco);
+                }
+
+                .icon {
+                    position:absolute;
+                    right: 10px;
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    fill: var(--blanco);
+                    
+                    svg {
+                        width: 90%;
+                        height: auto;
+                    }
+                }
+            }
+
+            .image {
+                width: 100%;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+
+        .tema-body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            gap: 10px;
+
+            p{
+                font-size: 20px;
+                color: var(--text-color);
+                width: 100%;
+            }
+
+            button{
+                background-color: var(--verde3);
+                border: none;
+                display: flex;
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-weight: bold;
+                color: var(--text-color);
+                cursor: pointer;
+                font-size: 15px;
+
+                &:hover {
+                    color: var(--blanco);
+                    background-color: var(--rosa-chicle3);
+                }
+            }
+        }
+    }
+}

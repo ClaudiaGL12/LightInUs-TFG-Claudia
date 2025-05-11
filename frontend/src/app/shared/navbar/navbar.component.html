@@ -1,47 +1,12 @@
-<nav class="navbar">
-  <div class="navbar-left">
-    <div class="log">
-      <img src="/assets/logoPFG.png" alt="logo">
-    </div>
-    <p>Light in us</p>
-  </div>
-  <!-- para cuando sea tamaño movil, aparezca toda la lista al pulsar en él (3guiones) -->
-  <button class="navbar-movil">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="24" viewBox="0 0 28 24"><path fill="currentColor" d="M2.61 0h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22m0 9.39h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22m0 9.391h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22"/></svg>
-  </button>  
-  <ul class="navbar-links">
-    <li><a routerLink="/">Inicio</a></li>
-    <li><a routerLink="{{ isLoggedIn ? '/temas' : '/login' }}">Temas</a></li>
-    <li><a routerLink="{{ isLoggedIn ? '/profesionales' : '/login' }}">Profesionales</a></li>
-    <li><a routerLink="{{ isLoggedIn ? '/foros' : '/login' }}">Foros</a></li>
-    <li><a routerLink="{{ isLoggedIn ? '/planes' : '/login' }}">Planes</a></li>
-
-    <!-- contenedor lógico. No lo lee el dom si no se cumple -->
-    <ng-container *ngIf="isLoggedIn; else notLogged">
-      <li><a routerLink="/perfil">Perfil</a></li>
-    </ng-container>
-
-    <ng-container *ngIf="isAdmin">
-      <li><a routerLink="/gestion">Gestión</a></li>
-    </ng-container>
-
-    <!-- plantilla q solo se inserta en el dom según el contenedor lógico -->
-    <ng-template #notLogged>
-      <li><a routerLink="/login">Login</a></li>
-      <li><a routerLink="/signup">Sign up</a></li>
-    </ng-template>
-  </ul>
-</nav>
-
 <!-- pruebas animación y hamburguesa -->
 <nav class="navbar" [class.open]="menuOpen">
   <div class="navbar-left">
     <div class="log">
-      <img src="/assets/logoPFG.png" alt="logo">
+      <img src="/assets/logoPFG1.png" alt="logo">
     </div>
     <p>Light in us</p>
   </div>
-
+  <!-- para cuando sea tamaño movil, aparezca toda la lista al pulsar en él (3guiones) -->
   <button class="navbar-movil" (click)="menuOpen = !menuOpen" aria-label="Toggle menu">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="24" viewBox="0 0 28 24">
       <path fill="currentColor" d="M2.61 0h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22m0 9.39h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22m0 9.391h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22"/>
@@ -55,14 +20,16 @@
     <li><a routerLink="{{ isLoggedIn ? '/foros' : '/login' }}">Foros</a></li>
     <li><a routerLink="{{ isLoggedIn ? '/planes' : '/login' }}">Planes</a></li>
 
-    <ng-container *ngIf="isLoggedIn; else notLogged">
-      <li><a routerLink="/perfil">Perfil</a></li>
-    </ng-container>
-
+    <!-- contenedor lógico. No lo lee el dom si no se cumple -->
     <ng-container *ngIf="isAdmin">
       <li><a routerLink="/gestion">Gestión</a></li>
     </ng-container>
 
+    <ng-container *ngIf="isLoggedIn; else notLogged">
+      <li><a routerLink="/perfil">Perfil</a></li>
+    </ng-container>
+
+    <!-- plantilla q solo se inserta en el dom según el contenedor lógico -->
     <ng-template #notLogged>
       <li><a routerLink="/login">Login</a></li>
       <li><a routerLink="/signup">Sign up</a></li>
