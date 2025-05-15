@@ -1,0 +1,25 @@
+.movil {
+    display: none;
+}
+
+.no-movil {
+    display: block;
+}
+@media screen and (max-width: 1600px) {
+
+}
+
+
+@media screen and (max-width: 1000px) {
+    .movil {
+        display: block;
+    }
+
+    .no-movil {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 760px) {
+
+}

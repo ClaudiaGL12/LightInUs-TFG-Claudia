@@ -1,0 +1,81 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 50px 0;
+}
+
+.cont-profesionales {
+    border: 3px solid var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .profesional {
+        width: 100%;
+    }
+}
+
+.front-card {
+    border: 3px solid var(--text-color);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+
+    .title{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        gap: 10px;
+
+        h2{
+            font-size: 20px;
+            color: var(--text-color);
+            width: 100%;
+        }
+
+        p{
+            font-size: 15px;
+            color: var(--text-color);
+            width: 100%;
+        }
+
+        button{
+            /* background-color: var(--rosa-chicle2); */
+            border: none;
+            display: flex;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 15px;
+
+            &:hover {
+                color: var(--blanco);
+                /* background-color: var(--rosa-chicle3); */
+            }
+        }
+    }
+
+    .image{
+        width: 200px;
+        overflow: hidden;
+
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+}

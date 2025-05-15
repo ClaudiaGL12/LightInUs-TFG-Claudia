@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('description');
             $table->string('content');
-            $table->enum('type', ['a', 'b', 'c', 'd']);
+            $table->foreignId('tipo_id')->constrained('tipo_temas')->onDelete('restrict');
             $table->timestamps();
         });
     }
