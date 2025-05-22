@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from "../../shared/header/header.component";
+import { FooterComponent } from "../../shared/footer/footer.component";
 import { HeaderStateService } from '../../services/header-state.service';
 
 @Component({
   selector: 'app-profesionales',
-  imports: [],
+  imports: [FooterComponent, HeaderComponent],
   templateUrl: './profesionales.component.html',
   styleUrl: './profesionales.component.css'
 })

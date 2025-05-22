@@ -12,7 +12,7 @@ import { TokenService } from '../../services/token.service';
 })
 export class NavbarComponent {
   isLoggedIn = inject(TokenService).isAuthenticated(); // esto cambia dependiendo de si el usuario está logueado o no
-  isAdmin = false; // esto cambia dependiendo de si el usuario es admin o no
+  isAdmin = inject(TokenService).isAdmin(); // esto cambia dependiendo de si el usuario es admin o no
   menuOpen = false;
   perfilMenuOpen = false;
 
@@ -21,6 +21,11 @@ export class NavbarComponent {
     private authService: AuthService,
     private tokenService: TokenService
   ){}
+
+  // ngOnInit(){
+  //   this.isLoggedIn = inject(TokenService).isAuthenticated(); // esto cambia dependiendo de si el usuario está logueado o no
+  //   this.isAdmin = inject(TokenService).isAdmin(); // esto cambia dependiendo de si el usuario es admin o no
+  // }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;

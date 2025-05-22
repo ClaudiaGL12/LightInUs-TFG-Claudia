@@ -38,8 +38,9 @@ export class LoginComponent {
   }
 
   private handleResponse(response: any): void {
-    console.log('respuesta del backend: '+response.message + response.token);
+    console.log('respuesta del backend: '+response.message + response.token + response.user.role);
     this.tokenService.handleToken(response.token);
+    localStorage.setItem('user', JSON.stringify(response.user));
     this.router.navigate(['/']);
   }
 
@@ -52,5 +53,15 @@ export class LoginComponent {
     setTimeout(() => {
       this.errors = null;
     }, 4000);
+  }
+
+
+  //metodo para agregar la clase auth-layout al body del diseño
+  ngOnInit(): void {
+    document.body.classList.add('auth-layout');
+  }
+
+  ngOnDestroy(): void {
+    document.body.classList.remove('auth-layout');
   }
 }

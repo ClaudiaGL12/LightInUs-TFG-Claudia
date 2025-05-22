@@ -15,8 +15,6 @@ import { TokenService } from '../../services/token.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn = inject(TokenService).isAuthenticated(); // esto cambia dependiendo de si el usuario está logueado o no
-  isAdmin = false; // esto cambia dependiendo de si el usuario es admin o no
-  menuOpen = false;
   showInputsAndCharacteristics = true;
   isTemasRoute = false; // Cambia a true si estás en la ruta de temas
   isProfesionalesRoute = false; // Cambia a true si estás en la ruta de profesionales

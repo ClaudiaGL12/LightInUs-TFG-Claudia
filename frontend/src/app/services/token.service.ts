@@ -26,12 +26,17 @@ export class TokenService {
     return false;
   }
 
-  // isAdmin(): boolean {
-  //   const token = this.getToken();
-  //   if (token) {
-  //     const payload = JSON.parse(atob(token.split('.')[1]));
-  //     return payload.role === 'admin';
-  //   }
-  //   return false;
-  // }
+  isAdmin(): boolean {
+    const userJson = localStorage.getItem('user');
+    console.log('userJson: ', userJson);
+    if (!userJson) return false;
+
+    try {
+      const user = JSON.parse(userJson);
+      return user.role === 'admin';
+    } catch (e) {
+      console.error('Error leyendo el usuario desde localStorage:', e);
+      return false;
+    }
+  }
 }

@@ -49,4 +49,13 @@ export class SignupComponent {
       this.errors = null;
     }, 4000);
   }
+
+  //metodo para agregar la clase auth-layout al body del diseño
+  ngOnInit(): void {
+    document.body.classList.add('auth-layout');
+  }
+
+  ngOnDestroy(): void {
+    document.body.classList.remove('auth-layout');
+  }
 }
