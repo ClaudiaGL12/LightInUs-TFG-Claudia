@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderStateService } from '../../services/header-state.service';
 import { CommonModule } from '@angular/common';
+import { TemasService } from '../../services/temas.service';
 
 @Component({
   selector: 'app-temas',
@@ -9,7 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './temas.component.css'
 })
 export class TemasComponent {
-  constructor(private headerState: HeaderStateService) {}
+  constructor(
+    private headerState: HeaderStateService,
+    private temasService: TemasService
+  ) {}
 
   ngOnInit() {
     this.headerState.setShowInputs(false);
@@ -21,6 +25,17 @@ export class TemasComponent {
 
   toggleFavorite() {
     this.isFavorited = !this.isFavorited;
+  }
+
+  mostrarTemas() {
+    this.temasService.getTemas().subscribe({
+      next: (response) => {
+        console.log('Temas:', response);
+      },
+      error: (error) => {
+        console.error('Error al obtener los temas:', error.error);
+      }
+    });
   }
 }
 

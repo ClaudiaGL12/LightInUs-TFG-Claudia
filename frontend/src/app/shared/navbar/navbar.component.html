@@ -7,7 +7,7 @@
     <p>Light in us</p>
   </div>
   <!-- para cuando sea tamaño movil, aparezca toda la lista al pulsar en él (3guiones) -->
-  <button class="navbar-movil" (click)="menuOpen = !menuOpen" aria-label="Toggle menu">
+  <button class="navbar-movil" (click)="toggleMenu()" aria-label="Toggle menu">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="24" viewBox="0 0 28 24">
       <path fill="currentColor" d="M2.61 0h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22m0 9.39h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22m0 9.391h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22"/>
     </svg>
@@ -26,7 +26,14 @@
     </ng-container>
 
     <ng-container *ngIf="isLoggedIn; else notLogged">
-      <li><a routerLink="/perfil">Perfil</a></li>
+      <li><a (click)="togglePerfilMenu()">Perfil</a>
+        <ul class="perfil-container">
+          <div class="perfil-menu" *ngIf="perfilMenuOpen">
+            <p>nombre</p>
+            <button (click)="logout()">Cerrar sesión</button>
+          </div>
+        </ul>
+      </li>
     </ng-container>
 
     <!-- plantilla q solo se inserta en el dom según el contenedor lógico -->

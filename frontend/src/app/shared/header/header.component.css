@@ -68,6 +68,7 @@ app-navbar {
         text-decoration: none;
         color: var(--text-color);
         font-weight: bold;
+        cursor: pointer;
 
         &:hover {
             color: var(--blanco);

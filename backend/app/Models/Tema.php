@@ -21,6 +21,6 @@ class Tema extends Model
      * Relación tema pertenece a un tipo de tema.
      */
     public function tipo(): BelongsTo {
-        return $this->belongsTo(TipoTema::class, 'tipo_id');
+        return $this->belongsTo(TipoTema::class, 'tipo_id', 'code');
     }
 }

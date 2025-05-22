@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ProfesionalController;
+use App\Http\Controllers\Api\TemaController;
+use App\Http\Controllers\Api\TipoTemaController;
+use App\Http\Controllers\Api\FavoritoController;
 
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -10,10 +15,13 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 
-// Route::post('/user{id}', function() {return 'ver user';});
-// Route::put('/user{id}', function() {return 'actualizar user';});
-// Route::delete('/user{id}', function() {return 'eliminar user';});
-
-
-//rutas de administrador
-//Route::get('/data', function() {return 'ver todos los profesionales y temas';});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('profesionales', ProfesionalController::class);
+    Route::apiResource('temas', TemaController::class);
+    Route::apiResource('tipo-temas', TipoTemaController::class);
+    
+    Route::get('/users/{user}/favoritos', [FavoritoController::class, 'index']);
+    Route::post('/users/{user}/favoritos/{tema}', [FavoritoController::class, 'store']);
+    Route::delete('/users/{user}/favoritos/{tema}', [FavoritoController::class, 'destroy']);
+});

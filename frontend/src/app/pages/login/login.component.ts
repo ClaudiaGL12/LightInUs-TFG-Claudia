@@ -38,14 +38,9 @@ export class LoginComponent {
   }
 
   private handleResponse(response: any): void {
-    console.log(response.message);
-    this.tokenService.handleToken(response.access_token);
-    this.router.navigateByUrl('/');
-    // if (response.status === 200) {
-    //   this.router.navigate(['/']);
-    // } else {
-    //   this.errors = response.errors;
-    // }
+    console.log('respuesta del backend: '+response.message + response.token);
+    this.tokenService.handleToken(response.token);
+    this.router.navigate(['/']);
   }
 
   private handleErrors(errors: any): void {

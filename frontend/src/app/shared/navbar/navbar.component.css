@@ -65,6 +65,45 @@
   }
 }
 
+.perfil-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .perfil-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--rosa2);
+    color: var(--blanco);
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+
+    p {
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: var(--rosa-chicle2);
+      color: var(--blanco);
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--text-color);
+        color: var(--blanco);
+      }
+    }
+  }
+}
+
 /* Responsive */
 @media screen and (max-width: 1000px) {
   .navbar {

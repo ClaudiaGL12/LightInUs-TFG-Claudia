@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('description');
             $table->string('specialty');
+            $table->string('image_pending')->nullable();
+            $table->string('description_pending')->nullable();
+            $table->string('specialty_pending')->nullable();
+            $table->boolean('pending_review')->default(false);
             $table->unsignedBigInteger('id_user')->unique();
 
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');

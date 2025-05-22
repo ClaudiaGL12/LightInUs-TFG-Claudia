@@ -10,7 +10,7 @@ class Profesional extends Model
     use HasFactory;
     
     protected $table = 'profesionales';
-    protected $fillable = ['name','image','description','specialty','id_user',];
+    protected $fillable = ['name','image','description','specialty','id_user','image_pending','description_pending','specialty_pending','pending_review'];
 
     /**
      * Relación: Un profesional pertenece a un usuario.

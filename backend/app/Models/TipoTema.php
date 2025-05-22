@@ -19,6 +19,6 @@ class TipoTema extends Model
      * Relación uno a muchos con Tema
      */
     public function temas(): HasMany {
-        return $this->hasMany(Tema::class, 'tipo_id');
+        return $this->hasMany(Tema::class, 'tipo_id','code');
     }
 }

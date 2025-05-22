@@ -11,14 +11,14 @@
     </div>
     <div class="inputs" *ngIf="showInputsAndCharacteristics">
         <ng-container *ngIf="isLoggedIn; else notLogged">
-            <a href="">Ver Temas</a>
-            <a href="">Ver Profesionales</a>
+            <a routerLink="/temas">Ver Temas</a>
+            <a routerLink="/profesionales">Ver Profesionales</a>
         </ng-container>
 
         <!-- plantilla q solo se inserta en el dom según el contenedor lógico -->
         <ng-template #notLogged>
-            <a href="">Iniciar Sesión</a>
-            <a href="">Registrarse</a>
+            <a routerLink="/login">Iniciar Sesión</a>
+            <a routerLink="/signup">Registrarse</a>
         </ng-template>
     </div>
     <div class="characteristics" *ngIf="showInputsAndCharacteristics">

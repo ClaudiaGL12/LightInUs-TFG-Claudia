@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('description');
             $table->string('content');
-            $table->foreignId('tipo_id')->constrained('tipo_temas')->onDelete('restrict');
+            $table->foreign('tipo_id')->references('code')->on('tipo_temas')->onDelete('restrict');
             $table->timestamps();
         });
     }
