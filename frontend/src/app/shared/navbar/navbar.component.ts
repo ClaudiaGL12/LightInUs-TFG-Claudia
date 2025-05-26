@@ -22,11 +22,6 @@ export class NavbarComponent {
     private tokenService: TokenService
   ){}
 
-  // ngOnInit(){
-  //   this.isLoggedIn = inject(TokenService).isAuthenticated(); // esto cambia dependiendo de si el usuario está logueado o no
-  //   this.isAdmin = inject(TokenService).isAdmin(); // esto cambia dependiendo de si el usuario es admin o no
-  // }
-
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
@@ -34,11 +29,6 @@ export class NavbarComponent {
   togglePerfilMenu() {
     this.perfilMenuOpen = !this.perfilMenuOpen;
   }
-
-  // ngOnInit() {
-  //   this.isLoggedIn = this.tokenService.isAuthenticated();
-  //   // this.isAdmin = this.tokenService.isAdmin();
-  // }
 
   logout() {
     // Aquí llamas a tu servicio de logout
@@ -54,6 +44,7 @@ export class NavbarComponent {
   private handleResponse(response: any) {
     console.log('Respuesta del servidor:', response.message);
     this.tokenService.revokeToken();
+    localStorage.removeItem('user');
     // this.router.navigateByUrl('');
     window.location.href = '/'; // Recarga toda la app desde la raíz
   }

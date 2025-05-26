@@ -1,0 +1,109 @@
+<div class="cont cont-prof">
+    <p *ngIf="mensajeExito" class="mensaje-exito">{{ mensajeExito }}</p>
+    <p *ngIf="mensajeError" class="mensaje-error">{{ mensajeError }}</p>
+
+    <table border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Imagen</th>
+                <th>Descripción</th>
+                <th>Especialidad</th>
+                <th>Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let prof of profesionales">
+                <tr>
+                    <td>{{ prof.id }}</td>
+                    <td>{{ prof.name }}</td>
+                    <td>{{ prof.image }}</td>
+                    <td>{{ prof.description }}</td>
+                    <td>{{ prof.specialty }}</td>
+                    <td>{{ prof.id_user }}</td>
+                    <td>
+                        <button (click)="editar(prof)">Editar</button>
+                        <button (click)="borrar(prof.id)">Borrar</button>
+                    </td>
+                </tr>
+
+                <tr *ngIf="profesionalEditandoId === prof.id">
+                    <td colspan="7">
+                        <form (ngSubmit)="guardarCambios()" #form="ngForm">
+                        <label>
+                            Nombre:
+                            <input [(ngModel)]="profesionalEditando.name" name="name" required />
+                        </label>
+
+                        <label>
+                            Imagen:
+                            <input [(ngModel)]="profesionalEditando.image" name="image" />
+                        </label>
+
+                        <label>
+                            Descripción:
+                            <input [(ngModel)]="profesionalEditando.description" name="description" required />
+                        </label>
+
+                        <label>
+                            Especialidad:
+                            <input [(ngModel)]="profesionalEditando.specialty" name="specialty" required />
+                        </label>
+
+                        <!-- <label>
+                            Usuario:
+                            <select [(ngModel)]="profesionalEditando.id_user" name="id_user">
+                                <option *ngFor="let user of users" [ngValue]="user.id">
+                                    {{ user.name }}
+                                </option>
+                            </select>
+                        </label> -->
+
+                        <button type="submit">Guardar</button>
+                        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+                        </form>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+
+    <button type="button" (click)="toggleFormularioCrearProf()">Agregar profesional</button>
+    <ng-container *ngIf="formularioCrearProf">
+        <form (ngSubmit)="agregarProf()" #form="ngForm">
+            <label>
+                Nombre:
+                <input [(ngModel)]="nuevoProfesional.name" name="name" required />
+            </label>
+        
+            <label>
+                Imagen:
+                <input [(ngModel)]="nuevoProfesional.image" name="image" />
+            </label>
+        
+            <label>
+                Descripción:
+                <input [(ngModel)]="nuevoProfesional.description" name="description" required />
+            </label>
+        
+            <label>
+                Especialidad:
+                <input [(ngModel)]="nuevoProfesional.specialty" name="specialty" required />
+            </label>
+        
+            <label>
+                Usuario:
+                <select [(ngModel)]="nuevoProfesional.id_user" name="id_user">
+                    <option *ngFor="let user of usuariosDisponibles" [ngValue]="user.id">
+                        {{ user.name }}
+                    </option>
+                </select>
+            </label>
+        
+            <button type="submit">Agregar</button>
+            <button type="button" (click)="toggleFormularioCrearProf()">Cancelar</button>
+        </form>
+    </ng-container>
+</div>

@@ -1,0 +1,149 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ProfesionalesService } from '../../../services/profesionales.service';
+import { UserService } from '../../../services/user.service';
+import { Profesional } from '../../../models/profesional.model';
+import { User } from '../../../models/user.model';
+import { FormsModule } from '@angular/forms';
+
+
+@Component({
+  selector: 'app-gestion-prof',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './gestion-prof.component.html',
+  styleUrl: './gestion-prof.component.css'
+})
+export class GestionProfComponent {
+  profesionales: Profesional[] = [];
+  users: User[] = [];
+  formularioCrearProf: boolean = false;
+  mensajeExito: string = '';
+  mensajeError: string = '';
+
+  profesionalEditandoId: number | null = null;
+  profesionalEditando: Profesional = {} as Profesional;
+  nuevoProfesional: Profesional = {} as Profesional;
+
+  constructor(private profesionalesService: ProfesionalesService, private usersService: UserService) {}
+
+  ngOnInit(): void {
+    this.mostrarProfesionales();
+    this.mostrarUsuarios();
+  }
+
+  mostrarProfesionales() {
+    this.profesionalesService.getProfesionales().subscribe({
+      next: (response: any) => {
+        console.log('Respuesta completa:', response);
+        this.profesionales = response.profesionales; // ✅ Accede al array dentro de `data`
+        console.log('Profesionales:', this.profesionales);
+      },
+      error: (error) => {
+        console.error('Error al obtener los profesionales:', error.error);
+      }
+    });
+  }
+
+  mostrarUsuarios() {
+    this.usersService.getUsers().subscribe({
+      next: (response: any) => {
+        console.log('Respuesta completa:', response);
+        this.users = response.users; // ✅ Accede al array dentro de `data`
+        console.log('Usuarios:', this.users);
+      },
+      error: (error) => {
+        console.error('Error al obtener los usuarios:', error.error);
+      }
+    });
+  }
+
+  get usuariosDisponibles(): User[] {
+    const idsUsados = new Set(this.profesionales.map(p => p.id_user));
+    return this.users.filter(user => !idsUsados.has(user.id));
+  }
+
+  editar(prof: Profesional) {
+    this.formularioCrearProf = false;
+    this.profesionalEditandoId = prof.id;
+    this.profesionalEditando = { ...prof, id_user: Number(prof.id_user) }; // copia para editar
+  }
+
+  cancelarEdicion() {
+    this.profesionalEditandoId = null;
+    this.profesionalEditando = {} as Profesional;
+  }
+
+  guardarCambios() {
+    if (!this.profesionalEditandoId) return;
+    this.profesionalesService.editProfesional(this.profesionalEditandoId, this.profesionalEditando).subscribe({
+      next: (response: any) => {
+        this.mensajeExito = response.message || 'Profesional editado correctamente';
+        this.mostrarProfesionales();
+        this.cancelarEdicion();
+        setTimeout(() => {
+          this.mensajeExito = '';
+        }, 3000);
+      },
+      error: err => {
+        console.error(err);
+        this.mensajeError = err ||'Error al editar el profesional.';
+
+        setTimeout(() => {
+          this.mensajeError = '';
+        }, 3000);
+      }
+    });
+  }
+
+  borrar(id: number) {
+    this.profesionalesService.deleteProfesional(id).subscribe( {
+      next: (response: any) => {
+        this.mensajeExito = response.message || 'Profesional eliminado correctamente';
+        this.mostrarProfesionales();
+        this.ngOnInit(); // recarga
+        setTimeout(() => {
+          this.mensajeExito = '';
+        }, 3000);
+      },
+      error: err => {
+        console.error(err);
+        this.mensajeError = err ||'Error al borrar el profesional.';
+
+        setTimeout(() => {
+          this.mensajeError = '';
+        }, 3000);
+      }
+      
+    });
+  }
+
+  toggleFormularioCrearProf(){
+    this.formularioCrearProf = !this.formularioCrearProf;
+    if (this.formularioCrearProf) {
+      this.profesionalEditandoId = null; // Reiniciar el formulario
+    }
+  }
+
+  agregarProf() {
+    this.profesionalesService.addProfesional(this.nuevoProfesional).subscribe({
+      next: (response: any) => {
+        this.mensajeExito = response.message || 'Profesional creado correctamente';
+        this.nuevoProfesional = {} as Profesional;
+        this.formularioCrearProf = false;
+        this.mostrarProfesionales();
+
+        setTimeout(() => {
+          this.mensajeExito = '';
+        }, 3000);
+      },
+      error: err => {
+        console.error(err);
+        this.mensajeError = err ||'Error al crear el profesional.';
+
+        setTimeout(() => {
+          this.mensajeError = '';
+        }, 3000);
+      }
+    });
+  }
+}

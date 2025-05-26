@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,6 @@ export class TokenService {
 
   isAdmin(): boolean {
     const userJson = localStorage.getItem('user');
-    console.log('userJson: ', userJson);
     if (!userJson) return false;
 
     try {
@@ -38,5 +38,10 @@ export class TokenService {
       console.error('Error leyendo el usuario desde localStorage:', e);
       return false;
     }
+  }
+
+  getUser(): User | null {
+    const userJson = localStorage.getItem('user');
+    return userJson ? JSON.parse(userJson) as User : null;
   }
 }

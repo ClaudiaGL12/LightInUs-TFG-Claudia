@@ -7,11 +7,17 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private readonly API_URL = environment.apiURL
+  private readonly apiURL = environment.apiURL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    // Set the API URL based on the environment
+    console.log('API URL:', this.apiURL);
+    if (environment.apiURL === '') {
+      this.apiURL = 'http://localhost:8000/api'; // Default to localhost if not set
+    }
+  }
 
   getUsers(){
-    return this.http.get<User[]>(`${this.API_URL}/users`);
+    return this.http.get<User[]>(`${this.apiURL}/users`);
   }
 }

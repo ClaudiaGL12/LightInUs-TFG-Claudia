@@ -15,7 +15,7 @@ class TemaSeeder extends Seeder
     public function run(): void
     {
         // Validar que existan todos los tipos, incluso si no los usás aún
-        $tipos = TipoTema::pluck('id', 'code');
+        $tipos = TipoTema::pluck('code', 'code'); // ['a' => 'a', 'b' => 'b']
 
         // Verificación obligatoria de los tipos esperados
         foreach (['a', 'b', 'c', 'd'] as $code) {
@@ -33,6 +33,20 @@ class TemaSeeder extends Seeder
 
         Tema::create([
             'name' => 'Meditación Guiada',
+            'description' => 'Técnicas básicas de meditación guiada.',
+            'content' => 'Contenido sobre meditación...',
+            'tipo_id' => $tipos['b'],
+        ]);
+
+        Tema::create([
+            'name' => 'Ansiedad social',
+            'description' => 'Cómo afrontar la ansiedad en la adolescencia.',
+            'content' => 'Contenido del tema sobre ansiedad...',
+            'tipo_id' => $tipos['c'],
+        ]);
+
+        Tema::create([
+            'name' => 'Meditación',
             'description' => 'Técnicas básicas de meditación guiada.',
             'content' => 'Contenido sobre meditación...',
             'tipo_id' => $tipos['b'],

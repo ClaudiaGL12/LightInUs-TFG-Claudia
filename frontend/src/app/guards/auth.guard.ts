@@ -23,3 +23,15 @@ export const isGuestGuard: CanActivateFn = (route, state) => {
   inject(Router).navigateByUrl('/');
   return false;
 };
+
+export const isAdminGuard: CanActivateFn = (route, state) => {
+  const isAuthenticated = inject(TokenService).isAuthenticated();
+  const isAdmin = inject(TokenService).isAdmin();
+
+  if (isAuthenticated && isAdmin) {
+    return true;
+  }
+
+  inject(Router).navigateByUrl('/');
+  return false;
+};

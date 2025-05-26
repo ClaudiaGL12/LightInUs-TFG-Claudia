@@ -1,0 +1,98 @@
+<div class="cont cont-temas">
+    <p *ngIf="mensajeExito" class="mensaje-exito">{{ mensajeExito }}</p>
+    <p *ngIf="mensajeError" class="mensaje-error">{{ mensajeError }}</p>
+
+    <table border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Contenido</th>
+                <th>Tipo Tema</th>
+                <th>Funciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let tema of temas">
+                <tr>
+                    <td>{{ tema.id }}</td>
+                    <td>{{ tema.name }}</td>
+                    <td>{{ tema.description }}</td>
+                    <td>{{ tema.content }}</td>
+                    <td>{{ tema.tipo_id }}</td>
+                    <td>
+                        <button (click)="editar(tema)">Editar</button>
+                        <button (click)="borrar(tema.id)">Borrar</button>
+                    </td>
+                </tr>
+                <tr *ngIf="temaEditandoId === tema.id">
+                    <td colspan="7">
+                        <form (ngSubmit)="guardarCambios()" #form="ngForm">
+                            <ng-container *ngIf="temaEditandoId === tema.id">
+                                <label>
+                                    Nombre:
+                                    <input [(ngModel)]="temaEditando.name" name="name" required />
+                                </label>
+
+                                <label>
+                                    Descripción:
+                                    <input [(ngModel)]="temaEditando.description" name="description" required />
+                                </label>
+
+                                <label>
+                                    Contenido:
+                                    <input [(ngModel)]="temaEditando.content" name="content" required />
+                                </label>
+
+                                <label>
+                                    Tipo Tema:
+                                    <select [(ngModel)]="temaEditando.tipo_id" name="tipo_id">
+                                        <option *ngFor="let tipo of tipoTemas" [value]="tipo.code">
+                                            {{ tipo.name }}
+                                        </option>
+                                    </select>
+                                </label>
+
+                                <button type="submit">Guardar Cambios</button>
+                                <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+                            </ng-container>
+                        </form>
+                    </td>
+                </tr>
+            </ng-container>
+            
+        </tbody>
+    </table>
+    <button type="button" (click)="toggleFormularioCrearTema()">Agregar Tema</button>
+    <ng-container *ngIf="formularioCrearTema">
+        <form (ngSubmit)="agregarTema()" #form="ngForm">
+            <label>
+                Nombre:
+                <input [(ngModel)]="nuevoTema.name" name="name" required />
+            </label>
+        
+            <label>
+                Descripción:
+                <input [(ngModel)]="nuevoTema.description" name="image" />
+            </label>
+        
+            <label>
+                Contenido:
+                <input [(ngModel)]="nuevoTema.content" name="content" required />
+            </label>
+            
+            <label>
+                Tipo Tema:
+                <select [(ngModel)]="nuevoTema.tipo_id" name="id_user">
+                    <option *ngFor="let tipoTema of tipoTemas" [ngValue]="tipoTema.code">
+                        {{ tipoTema.name }}
+                    </option>
+                </select>
+            </label>
+        
+            <button type="submit">Agregar</button>
+            <button type="button" (click)="toggleFormularioCrearTema()">Cancelar</button>
+        </form>
+    </ng-container>
+</div>

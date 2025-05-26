@@ -1,0 +1,7 @@
+main{
+    padding-top: 70px; /*lo q mide el navbar*/
+}
+
+.cont table{
+    border: 1px solid var(--text-color);
+}

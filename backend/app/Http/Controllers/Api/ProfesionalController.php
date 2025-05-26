@@ -82,10 +82,18 @@ class ProfesionalController extends Controller
                 'image' => 'nullable|string',
                 'description' => 'string',
                 'specialty' => 'string',
+                'image_pending' => 'nullable|string|max:255',
+                'description_pending' => 'nullable|string|max:1000',
+                'specialty_pending' => 'nullable|string|max:255',
+                'pending_review' => 'boolean',
+                // 'id_user' no debería cambiarse nunca
             ]);
 
             $prof->update($validated);
-            return response()->json($prof, Response::HTTP_OK);
+            return response()->json([
+                'message' => 'Profesional actualizado correctamente.',
+                'profesional' => $prof
+            ], Response::HTTP_OK);
         } catch (ValidationException $e) {
             return response()->json([
                 'errors' => $e->validator->errors()

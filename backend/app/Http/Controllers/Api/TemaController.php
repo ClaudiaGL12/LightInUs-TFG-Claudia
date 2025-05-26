@@ -24,6 +24,7 @@ class TemaController extends Controller
             }
 
             return response()->json([
+                'message' => 'Temas obtenidos correctamente',
                 'temas' => $temas
             ], Response::HTTP_OK);
         } catch (Exception $e) {
@@ -40,11 +41,14 @@ class TemaController extends Controller
                 'name' => 'required|string|unique:temas',
                 'description' => 'required|string',
                 'content' => 'required|string',
-                'tipo_id' => 'required|exists:tipo_temas,id',
+                'tipo_id' => 'required|exists:tipo_temas,code',
             ]);
 
             $tema = Tema::create($validated);
-            return response()->json($tema, Response::HTTP_CREATED);
+            return response()->json([
+                'message' => 'Tema creado correctamente',
+                'tema' => $tema
+            ], Response::HTTP_CREATED);
         } catch (ValidationException $e) {
             return response()->json([
                 'errors' => $e->validator->errors()
@@ -61,6 +65,7 @@ class TemaController extends Controller
         try {
             $tema = Tema::findOrFail($id);
             return response()->json([
+                'message' => 'Tema encontrado correctamente',
                 'tema' => $tema
             ], Response::HTTP_OK);
         } catch (Exception $e) {
@@ -79,11 +84,14 @@ class TemaController extends Controller
                 'name' => "string|unique:temas,name,{$id}",
                 'description' => 'string',
                 'content' => 'string',
-                'tipo_id' => 'exists:tipo_temas,id',
+                'tipo_id' => 'exists:tipo_temas,code',
             ]);
 
             $tema->update($validated);
-            return response()->json($tema, Response::HTTP_OK);
+            return response()->json([
+                'message' => 'Tema actualizado correctamente',
+                'tema' => $tema
+            ], Response::HTTP_OK);
         } catch (ValidationException $e) {
             return response()->json([
                 'errors' => $e->validator->errors()
