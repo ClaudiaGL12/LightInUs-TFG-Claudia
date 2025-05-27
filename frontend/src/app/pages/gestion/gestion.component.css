@@ -11,9 +11,6 @@ main{
     color: var(--text-color);
 }
 
-/* ></app-gestion-prof>
-    <></app-gestion-tema>
-    <app-gestion-tipo-t */
 app-gestion-prof, app-gestion-tema, app-gestion-tipo-t {
     width: 100%;
     max-width: 1200px;

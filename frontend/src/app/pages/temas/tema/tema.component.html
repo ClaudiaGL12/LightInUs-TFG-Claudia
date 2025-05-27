@@ -1,1 +1,12 @@
-<p>tema works!</p>
+<app-navbar></app-navbar>
+<main>
+    <ng-container *ngIf="tema">
+        <h2>{{tema.name}}</h2>
+        <div class="cont">
+            <p>{{tema.content}}</p>
+            <button class="button-tema" [routerLink]="['/temas']">Volver a Temas</button>
+        </div>
+    </ng-container>
+</main>
+<app-footer></app-footer>
+

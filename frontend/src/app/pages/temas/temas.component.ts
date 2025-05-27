@@ -9,10 +9,11 @@ import { TipoTema } from '../../models/tipo-tema.model';
 import { Tema } from '../../models/tema.model';
 import { Token } from '@angular/compiler';
 import { TokenService } from '../../services/token.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-temas',
-  imports: [CommonModule, FooterComponent, HeaderComponent],
+  imports: [CommonModule, FooterComponent, HeaderComponent, RouterLink],
   templateUrl: './temas.component.html',
   styleUrl: './temas.component.css'
 })

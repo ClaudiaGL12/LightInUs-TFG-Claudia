@@ -65,6 +65,17 @@ main{
                     svg {
                         width: 90%;
                         height: auto;
+                        path{
+                            cursor: pointer;
+
+                            &:hover {
+                                fill: var(--rosa-chicle3);
+                            }
+
+                            &:active {
+                                fill: var(--verde3);
+                            }
+                        }
                     }
                 }
             }
