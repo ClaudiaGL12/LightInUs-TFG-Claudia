@@ -16,6 +16,7 @@ export class GestionTemaComponent {
   temas: Tema[] = [];
   tipoTemas: TipoTema[] = []; // Asumiendo que tienes un array de tipos de temas
   formularioCrearTema: boolean = false;
+  errors: any;
   mensajeExito: string = '';
   mensajeError: string = '';
   
@@ -76,18 +77,19 @@ export class GestionTemaComponent {
       next: (response: any) => {
         this.mensajeExito = response.message || 'Tema eliminado correctamente';
         this.mostrarTemas();
-        this.ngOnInit(); // recarga
+        location.reload();
+        // this.ngOnInit(); // recarga solo temas
         setTimeout(() => {
           this.mensajeExito = '';
         }, 3000);
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err.errors ||'Error al borrar el tema.';
+        this.mensajeError ='Error al borrar el tema.';
 
         setTimeout(() => {
           this.mensajeError = '';
-        }, 3000);
+        }, 5000);
       }
       
     });
@@ -101,17 +103,21 @@ export class GestionTemaComponent {
         this.mensajeExito = response.message || 'Tema editado correctamente';
         this.mostrarTemas();
         this.cancelarEdicion();
+        location.reload();
+
         setTimeout(() => {
           this.mensajeExito = '';
         }, 3000);
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err.error.errors ||'Error al editar el Tema.';
+        // this.mensajeError = err.error.errors ||'Error al editar el Tema.';
+        this.errors = err.error.errors;
 
         setTimeout(() => {
-          this.mensajeError = '';
-        }, 3000);
+          // this.mensajeError = '';
+          this.errors = null; // Limpiar errores después de un tiempo
+        }, 5000);
       }
     });
   }
@@ -130,6 +136,7 @@ export class GestionTemaComponent {
         this.nuevoTema = {} as Tema;
         this.formularioCrearTema = false;
         this.mostrarTemas();
+        location.reload();
   
         setTimeout(() => {
           this.mensajeExito = '';
@@ -137,11 +144,13 @@ export class GestionTemaComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err.error.errors ||'Error al crear el tema.';
-  
+        // this.mensajeError = err.error.errors ||'Error al crear el tema.';
+        this.errors = err.error.errors;
+
         setTimeout(() => {
-          this.mensajeError = '';
-        }, 3000);
+          // this.mensajeError = '';
+          this.errors = null; // Limpiar errores después de un tiempo
+        }, 5000);
       }
     });
   }

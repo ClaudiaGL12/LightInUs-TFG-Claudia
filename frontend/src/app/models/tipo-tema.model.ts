@@ -3,4 +3,5 @@ export interface TipoTema {
     name: string;
     code: string;
     description: string;
+    numero_temas: number;
 }

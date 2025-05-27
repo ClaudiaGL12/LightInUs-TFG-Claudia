@@ -1,7 +1,7 @@
 <div class="cont cont-temas">
+    <h2>Temas</h2>
     <p *ngIf="mensajeExito" class="mensaje-exito">{{ mensajeExito }}</p>
     <p *ngIf="mensajeError" class="mensaje-error">{{ mensajeError }}</p>
-
     <table border="1" cellspacing="0" cellpadding="5">
         <thead>
             <tr>
@@ -35,16 +35,25 @@
                                     Nombre:
                                     <input [(ngModel)]="temaEditando.name" name="name" required />
                                 </label>
+                                <div class="error" *ngIf="errors?.name">
+                                    Introduzca un nombre válido y no repetido.
+                                </div>
 
                                 <label>
                                     Descripción:
                                     <textarea [(ngModel)]="temaEditando.description" name="description" required></textarea>
                                 </label>
+                                <div class="error" *ngIf="errors?.description">
+                                    Introduzca una descripción válida.
+                                </div>
 
                                 <label>
                                     Contenido:
                                     <textarea [(ngModel)]="temaEditando.content" name="content" required></textarea>
                                 </label>
+                                <div class="error" *ngIf="errors?.content">
+                                    Introduzca un contenido válido.
+                                </div>
 
                                 <label>
                                     Tipo Tema:
@@ -54,6 +63,9 @@
                                         </option>
                                     </select>
                                 </label>
+                                <div class="error" *ngIf="errors?.tipo_id">
+                                    Seleccione un tipo de tema.
+                                </div>
                                 <label>
                                     <button class="button-guardar" type="submit">Guardar Cambios</button>
                                     <button class="button-cancelar" type="button" (click)="cancelarEdicion()">Cancelar</button>
@@ -74,14 +86,26 @@
                 Nombre:
                 <input [(ngModel)]="nuevoTema.name" name="name" required />
             </label>
+            <div class="error" *ngIf="errors?.name">
+                Introduzca un nombre válido y no repetido.
+            </div>
+
             <label>
                 Descripción:
                 <textarea [(ngModel)]="nuevoTema.description" name="image"></textarea>
             </label>
+            <div class="error" *ngIf="errors?.description">
+                Introduzca una descripción válida.
+            </div>
+
             <label>
                 Contenido:
                 <textarea [(ngModel)]="nuevoTema.content" name="content" required></textarea>
             </label>
+            <div class="error" *ngIf="errors?.content">
+                Introduzca un contenido válido.
+            </div>
+
             <label>
                 Tipo Tema:
                 <select [(ngModel)]="nuevoTema.tipo_id" name="id_user">
@@ -90,7 +114,11 @@
                     </option>
                 </select>
             </label>
-            <label for="">
+            <div class="error" *ngIf="errors?.tipo_id">
+                Seleccione un tipo de tema.
+            </div>
+
+            <label>
                 <button class="button-guardar" type="submit">Agregar</button>
                 <button class="button-cancelar" type="button" (cLlick)="toggleFormularioCrearTema()">Cancelar</button>
             </label>

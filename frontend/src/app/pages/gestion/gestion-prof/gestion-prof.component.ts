@@ -17,6 +17,7 @@ export class GestionProfComponent {
   profesionales: Profesional[] = [];
   users: User[] = [];
   formularioCrearProf: boolean = false;
+  errors: any;
   mensajeExito: string = '';
   mensajeError: string = '';
 
@@ -31,6 +32,7 @@ export class GestionProfComponent {
     this.mostrarUsuarios();
   }
 
+  //obtener profesionales y usuarios
   mostrarProfesionales() {
     this.profesionalesService.getProfesionales().subscribe({
       next: (response: any) => {
@@ -47,7 +49,7 @@ export class GestionProfComponent {
   mostrarUsuarios() {
     this.usersService.getUsers().subscribe({
       next: (response: any) => {
-        console.log('Respuesta completa:', response);
+        // console.log('Respuesta completa:', response);
         this.users = response.users; // ✅ Accede al array dentro de `data`
         console.log('Usuarios:', this.users);
       },
@@ -92,11 +94,13 @@ export class GestionProfComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err ||'Error al editar el profesional.';
+        // this.mensajeError = 'Error al editar el profesional.';
+        this.errors = err.error.errors;
 
         setTimeout(() => {
-          this.mensajeError = '';
-        }, 3000);
+          // this.mensajeError = '';
+          this.errors = null; // Limpiar errores después de un tiempo
+        }, 5000);
       }
     });
   }
@@ -109,15 +113,15 @@ export class GestionProfComponent {
         this.ngOnInit(); // recarga
         setTimeout(() => {
           this.mensajeExito = '';
-        }, 3000);
+        }, 5000);
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err ||'Error al borrar el profesional.';
+        this.mensajeError ='Error al borrar el profesional.';
 
         setTimeout(() => {
           this.mensajeError = '';
-        }, 3000);
+        }, 5000);
       }
       
     });
@@ -144,11 +148,13 @@ export class GestionProfComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err ||'Error al crear el profesional.';
+        // this.mensajeError ='Error al crear el profesional.';
+        this.errors = err.error.errors;
 
         setTimeout(() => {
-          this.mensajeError = '';
-        }, 3000);
+          // this.mensajeError = '';
+          this.errors = null; // Limpiar errores después de un tiempo
+        }, 5000);
       }
     });
   }

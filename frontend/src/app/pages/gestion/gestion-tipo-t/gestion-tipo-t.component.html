@@ -1,13 +1,14 @@
 <div class="cont cont-tipoTemas">
+    <h2>Tipos de Temas</h2>
     <p *ngIf="mensajeExito" class="mensaje-exito">{{ mensajeExito }}</p>
     <p *ngIf="mensajeError" class="mensaje-error">{{ mensajeError }}</p>
-
     <table border="1" cellspacing="0" cellpadding="5">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Código</th>
+                <th>Temas Relacionados</th>
                 <th>Funciones</th>
             </tr>
         </thead>
@@ -17,13 +18,14 @@
                     <td>{{ tipoTema.id }}</td>
                     <td>{{ tipoTema.name }}</td>
                     <td>{{ tipoTema.code }}</td>
+                    <td>{{ tipoTema.numero_temas }}</td>
                     <td>
                         <button class="button-editar" (click)="editar(tipoTema)">Editar</button>
                         <button class="button-borrar" (click)="borrar(tipoTema.id)">Borrar</button>
                     </td>
                 </tr>
                 <tr *ngIf="tipoTemaEditandoId === tipoTema.id">
-                    <td colspan="4">
+                    <td colspan="5">
                         <form (ngSubmit)="guardarCambios()" #form="ngForm">
                             <ng-container *ngIf="tipoTemaEditandoId === tipoTema.id">
                                 <h3>Editar Tipo Tema: {{tipoTema.id}}</h3>
@@ -31,11 +33,9 @@
                                     Nombre:
                                     <input [(ngModel)]="tipoTemaEditando.name" name="name" required />
                                 </label>
-
-                                <label>
-                                    Código:
-                                    <input [(ngModel)]="tipoTemaEditando.code" name="code" required />
-                                </label>
+                                <div class="error" *ngIf="errors?.name">
+                                    Introduzca un nombre válido.
+                                </div>
                                 <label>
                                     <button class="button-guardar" type="submit">Guardar</button>
                                     <button class="button-cancelar" type="button" (click)="cancelarEdicion()">Cancelar</button>
@@ -56,11 +56,18 @@
                 Nombre:
                 <input [(ngModel)]="nuevoTipoTema.name" name="name" required />
             </label>
+            <div class="error" *ngIf="errors?.name">
+                Introduzca un nombre válido.
+            </div>
         
             <label>
                 Codigo:
                 <input [(ngModel)]="nuevoTipoTema.code" name="code" required />
             </label>
+            <div class="error" *ngIf="errors?.code">
+                Introduzca un código válido y no repetido.
+            </div>
+
             <label>
                 <button class="button-guardar" type="submit">Agregar</button>
                 <button class="button-cancelar" type="button" (click)="toggleFormularioCrearTipoTema()">Cancelar</button>

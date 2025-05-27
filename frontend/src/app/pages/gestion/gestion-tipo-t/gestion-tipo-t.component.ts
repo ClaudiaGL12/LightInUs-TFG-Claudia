@@ -16,6 +16,7 @@ export class GestionTipoTComponent {
   tipoTemas: TipoTema[] = [];
   temas: Tema[] = [];
   formularioCrearTipoTema: boolean = false;
+  errors: any;
   mensajeExito: string = '';
   mensajeError: string = '';
     
@@ -33,8 +34,14 @@ export class GestionTipoTComponent {
   mostrarTipoTemas() {
     this.tipoTemasService.getTipoTemas().subscribe({
       next: (response: any) => {
-        console.log('Respuesta completa:', response);
-        this.tipoTemas = response.tipo_temas; // ✅ Accede al array dentro de `data`
+        this.tipoTemas = response.tipo_temas;
+        
+        // Contar cuántos temas están asociados a cada tipo
+        this.tipoTemas.forEach(tipo => {
+          const count = this.temas.filter(t => t.tipo_id === tipo.code).length;
+          tipo.numero_temas = count;
+        }); 
+        
         console.log('Tipo Temas:', this.tipoTemas);
       },
       error: (error) => {
@@ -82,14 +89,13 @@ export class GestionTipoTComponent {
         }, 3000);
       },
       error: error => {
-        console.error(error.error.errors, error.error.temas_relacionados);
         const lista = error.error.temas_relacionados ? error.error.temas_relacionados.map((tema: Tema) => tema.name).join(', ') : '';
         this.mensajeError = error.error.errors + ': ' + lista ||'Error al borrar el tipo tema.';
         alert(this.mensajeError);
 
         setTimeout(() => {
           this.mensajeError = '';
-        }, 3000);
+        }, 5000);
       }
       
     });
@@ -109,11 +115,12 @@ export class GestionTipoTComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err.errors ||'Error al editar el tipo Tema.';
-
+        // this.mensajeError = err.errors ||'Error al editar el tipo Tema.';
+        this.errors = err.error.errors;
         setTimeout(() => {
-          this.mensajeError = '';
-        }, 3000);
+          // this.mensajeError = '';
+          this.errors = null; // Limpiar errores después de un tiempo
+        }, 5000);
       }
     });
   }
@@ -139,11 +146,13 @@ export class GestionTipoTComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err.errors ||'Error al crear el tema.';
-  
+        // this.mensajeError = err.errors ||'Error al crear el tema.';
+        this.errors = err.error.errors;
+
         setTimeout(() => {
-          this.mensajeError = '';
-        }, 3000);
+          // this.mensajeError = '';
+          this.errors = null; // Limpiar errores después de un tiempo
+        }, 5000);
       }
     });
   }
