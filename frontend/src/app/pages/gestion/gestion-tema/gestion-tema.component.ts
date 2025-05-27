@@ -57,9 +57,14 @@ export class GestionTemaComponent {
   }
   
   editar(tema: Tema) {
-    this.temaEditandoId = tema.id;
-    this.temaEditando = { ...tema}; // copia para editar
-  }
+    this.formularioCrearTema = false;
+    if (this.temaEditandoId === tema.id) {
+      this.cancelarEdicion(); // Si ya está editando, cancelar
+    } else {
+      this.temaEditandoId = tema.id;
+      this.temaEditando = { ...tema}; // copia para editar
+    }
+}
   
   cancelarEdicion() {
     this.temaEditandoId = null;
@@ -78,7 +83,7 @@ export class GestionTemaComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err ||'Error al borrar el tema.';
+        this.mensajeError = err.errors ||'Error al borrar el tema.';
 
         setTimeout(() => {
           this.mensajeError = '';
@@ -102,7 +107,7 @@ export class GestionTemaComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err ||'Error al editar el Tema.';
+        this.mensajeError = err.error.errors ||'Error al editar el Tema.';
 
         setTimeout(() => {
           this.mensajeError = '';
@@ -113,6 +118,9 @@ export class GestionTemaComponent {
 
   toggleFormularioCrearTema(){
     this.formularioCrearTema = !this.formularioCrearTema;
+    if (this.formularioCrearTema) {
+      this.temaEditandoId = null; // Reiniciar el formulario
+    }
   }
 
   agregarTema() {
@@ -129,7 +137,7 @@ export class GestionTemaComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err ||'Error al crear el tema.';
+        this.mensajeError = err.error.errors ||'Error al crear el tema.';
   
         setTimeout(() => {
           this.mensajeError = '';

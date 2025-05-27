@@ -57,8 +57,13 @@ export class GestionTipoTComponent {
   }
 
   editar(tipoTema: TipoTema) {
-    this.tipoTemaEditandoId = tipoTema.id;
-    this.tipoTemaEditando = { ...tipoTema}; // copia para editar
+    this.formularioCrearTipoTema = false;
+    if (this.tipoTemaEditandoId === tipoTema.id) {
+      this.cancelarEdicion();
+    } else {
+      this.tipoTemaEditandoId = tipoTema.id;
+      this.tipoTemaEditando = { ...tipoTema}; // copia para editar
+    }
   }
   
   cancelarEdicion() {
@@ -76,9 +81,11 @@ export class GestionTipoTComponent {
           this.mensajeExito = '';
         }, 3000);
       },
-      error: err => {
-        console.error(err);
-        this.mensajeError = err ||'Error al borrar el tipo tema.';
+      error: error => {
+        console.error(error.error.errors, error.error.temas_relacionados);
+        const lista = error.error.temas_relacionados ? error.error.temas_relacionados.map((tema: Tema) => tema.name).join(', ') : '';
+        this.mensajeError = error.error.errors + ': ' + lista ||'Error al borrar el tipo tema.';
+        alert(this.mensajeError);
 
         setTimeout(() => {
           this.mensajeError = '';
@@ -102,7 +109,7 @@ export class GestionTipoTComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err ||'Error al editar el Tema.';
+        this.mensajeError = err.errors ||'Error al editar el tipo Tema.';
 
         setTimeout(() => {
           this.mensajeError = '';
@@ -113,6 +120,9 @@ export class GestionTipoTComponent {
 
   toggleFormularioCrearTipoTema(){
     this.formularioCrearTipoTema = !this.formularioCrearTipoTema;
+    if (this.formularioCrearTipoTema) {
+      this.tipoTemaEditandoId = null; 
+    }
   }
 
   agregarTipoTema() {
@@ -129,7 +139,7 @@ export class GestionTipoTComponent {
       },
       error: err => {
         console.error(err);
-        this.mensajeError = err ||'Error al crear el tema.';
+        this.mensajeError = err.errors ||'Error al crear el tema.';
   
         setTimeout(() => {
           this.mensajeError = '';

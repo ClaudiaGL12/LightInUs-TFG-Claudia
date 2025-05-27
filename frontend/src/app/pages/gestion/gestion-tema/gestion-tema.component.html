@@ -14,22 +14,23 @@
             </tr>
         </thead>
         <tbody>
-            <ng-container *ngFor="let tema of temas">
-                <tr>
+            <ng-container *ngFor="let tema of temas; let i = index">
+                <tr [style]="i % 2 === 0 ? 'background-color: var(--rosa1);' : 'background-color: var(--blanco);'">
                     <td>{{ tema.id }}</td>
                     <td>{{ tema.name }}</td>
                     <td>{{ tema.description }}</td>
                     <td>{{ tema.content }}</td>
                     <td>{{ tema.tipo_id }}</td>
                     <td>
-                        <button (click)="editar(tema)">Editar</button>
-                        <button (click)="borrar(tema.id)">Borrar</button>
+                        <button class="button-editar" (click)="editar(tema)">Editar</button>
+                        <button class="button-borrar" (click)="borrar(tema.id)">Borrar</button>
                     </td>
                 </tr>
                 <tr *ngIf="temaEditandoId === tema.id">
                     <td colspan="7">
                         <form (ngSubmit)="guardarCambios()" #form="ngForm">
                             <ng-container *ngIf="temaEditandoId === tema.id">
+                                <h3>Editar Tema: {{tema.id}}</h3>
                                 <label>
                                     Nombre:
                                     <input [(ngModel)]="temaEditando.name" name="name" required />
@@ -37,12 +38,12 @@
 
                                 <label>
                                     Descripción:
-                                    <input [(ngModel)]="temaEditando.description" name="description" required />
+                                    <textarea [(ngModel)]="temaEditando.description" name="description" required></textarea>
                                 </label>
 
                                 <label>
                                     Contenido:
-                                    <input [(ngModel)]="temaEditando.content" name="content" required />
+                                    <textarea [(ngModel)]="temaEditando.content" name="content" required></textarea>
                                 </label>
 
                                 <label>
@@ -53,9 +54,10 @@
                                         </option>
                                     </select>
                                 </label>
-
-                                <button type="submit">Guardar Cambios</button>
-                                <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+                                <label>
+                                    <button class="button-guardar" type="submit">Guardar Cambios</button>
+                                    <button class="button-cancelar" type="button" (click)="cancelarEdicion()">Cancelar</button>
+                                </label>
                             </ng-container>
                         </form>
                     </td>
@@ -64,24 +66,22 @@
             
         </tbody>
     </table>
-    <button type="button" (click)="toggleFormularioCrearTema()">Agregar Tema</button>
+    <button class="button-crear" type="button" (click)="toggleFormularioCrearTema()">Agregar Tema</button>
     <ng-container *ngIf="formularioCrearTema">
-        <form (ngSubmit)="agregarTema()" #form="ngForm">
+        <form class="form-crear" (ngSubmit)="agregarTema()" #form="ngForm">
+            <h3>Nuevo Tema</h3>
             <label>
                 Nombre:
                 <input [(ngModel)]="nuevoTema.name" name="name" required />
             </label>
-        
             <label>
                 Descripción:
-                <input [(ngModel)]="nuevoTema.description" name="image" />
+                <textarea [(ngModel)]="nuevoTema.description" name="image"></textarea>
             </label>
-        
             <label>
                 Contenido:
-                <input [(ngModel)]="nuevoTema.content" name="content" required />
+                <textarea [(ngModel)]="nuevoTema.content" name="content" required></textarea>
             </label>
-            
             <label>
                 Tipo Tema:
                 <select [(ngModel)]="nuevoTema.tipo_id" name="id_user">
@@ -90,9 +90,11 @@
                     </option>
                 </select>
             </label>
-        
-            <button type="submit">Agregar</button>
-            <button type="button" (click)="toggleFormularioCrearTema()">Cancelar</button>
+            <label for="">
+                <button class="button-guardar" type="submit">Agregar</button>
+                <button class="button-cancelar" type="button" (cLlick)="toggleFormularioCrearTema()">Cancelar</button>
+            </label>
+           
         </form>
     </ng-container>
 </div>

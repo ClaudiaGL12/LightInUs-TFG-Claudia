@@ -12,20 +12,21 @@
             </tr>
         </thead>
         <tbody>
-            <ng-container *ngFor="let tipoTema of tipoTemas">
-                <tr>
+            <ng-container *ngFor="let tipoTema of tipoTemas; let i = index">
+                <tr [style]="i % 2 === 0 ? 'background-color: var(--rosa1);' : 'background-color: var(--blanco);'">
                     <td>{{ tipoTema.id }}</td>
                     <td>{{ tipoTema.name }}</td>
                     <td>{{ tipoTema.code }}</td>
                     <td>
-                        <button (click)="editar(tipoTema)">Editar</button>
-                        <button (click)="borrar(tipoTema.id)">Borrar</button>
+                        <button class="button-editar" (click)="editar(tipoTema)">Editar</button>
+                        <button class="button-borrar" (click)="borrar(tipoTema.id)">Borrar</button>
                     </td>
                 </tr>
                 <tr *ngIf="tipoTemaEditandoId === tipoTema.id">
                     <td colspan="4">
                         <form (ngSubmit)="guardarCambios()" #form="ngForm">
                             <ng-container *ngIf="tipoTemaEditandoId === tipoTema.id">
+                                <h3>Editar Tipo Tema: {{tipoTema.id}}</h3>
                                 <label>
                                     Nombre:
                                     <input [(ngModel)]="tipoTemaEditando.name" name="name" required />
@@ -35,9 +36,10 @@
                                     Código:
                                     <input [(ngModel)]="tipoTemaEditando.code" name="code" required />
                                 </label>
-
-                                <button type="submit">Guardar Cambios</button>
-                                <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+                                <label>
+                                    <button class="button-guardar" type="submit">Guardar</button>
+                                    <button class="button-cancelar" type="button" (click)="cancelarEdicion()">Cancelar</button>
+                                </label>
                             </ng-container>
                         </form>
                     </td>
@@ -46,9 +48,10 @@
             
         </tbody>
     </table>
-    <button type="button" (click)="toggleFormularioCrearTipoTema()">Agregar Tipo tema</button>
+    <button class="button-crear" type="button" (click)="toggleFormularioCrearTipoTema()">Agregar Tipo tema</button>
     <ng-container *ngIf="formularioCrearTipoTema">
-        <form (ngSubmit)="agregarTipoTema()" #form="ngForm">
+        <form class="form-crear" (ngSubmit)="agregarTipoTema()" #form="ngForm">
+            <h3>Nuevo Tipo Tema</h3>
             <label>
                 Nombre:
                 <input [(ngModel)]="nuevoTipoTema.name" name="name" required />
@@ -58,9 +61,10 @@
                 Codigo:
                 <input [(ngModel)]="nuevoTipoTema.code" name="code" required />
             </label>
-        
-            <button type="submit">Agregar</button>
-            <button type="button" (click)="toggleFormularioCrearTipoTema()">Cancelar</button>
+            <label>
+                <button class="button-guardar" type="submit">Agregar</button>
+                <button class="button-cancelar" type="button" (click)="toggleFormularioCrearTipoTema()">Cancelar</button>
+            </label>
         </form>
     </ng-container>
 </div>

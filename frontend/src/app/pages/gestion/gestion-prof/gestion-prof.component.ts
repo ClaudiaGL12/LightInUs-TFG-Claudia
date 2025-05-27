@@ -64,8 +64,14 @@ export class GestionProfComponent {
 
   editar(prof: Profesional) {
     this.formularioCrearProf = false;
-    this.profesionalEditandoId = prof.id;
-    this.profesionalEditando = { ...prof, id_user: Number(prof.id_user) }; // copia para editar
+    if (this.profesionalEditandoId === prof.id) {
+      // Si ya está editando, cancelar
+      this.cancelarEdicion();
+    } else {
+      this.profesionalEditandoId = prof.id;
+      this.profesionalEditando = { ...prof, id_user: Number(prof.id_user) }; // copia para editar
+    }
+    
   }
 
   cancelarEdicion() {

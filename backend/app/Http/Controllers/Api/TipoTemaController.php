@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\TipoTema;
+use App\Models\Tema;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
@@ -94,13 +95,46 @@ class TipoTemaController extends Controller
     } 
 
     // Eliminar un tipo de tema
-    public function destroy($id) {
+    // public function destroy($id) {
+    //     try {
+    //         TipoTema::findOrFail($id)->delete();
+    //         return response()->json(['message' => 'Tipo de tema eliminado.'], Response::HTTP_OK);
+    //     } catch (Exception $e) {
+    //         return response()->json([
+    //             'errors' => 'Error al eliminar el tipo de tema'
+    //         ], Response::HTTP_INTERNAL_SERVER_ERROR);
+    //     }
+    // }
+
+    public function destroy($id){
         try {
-            TipoTema::findOrFail($id)->delete();
-            return response()->json(['message' => 'Tipo de tema eliminado.'], Response::HTTP_OK);
-        } catch (Exception $e) {
+            $tipo = TipoTema::findOrFail($id);
+
+            // Buscar temas relacionados
+            $temasRelacionados = $tipo->temas;
+
+            if ($temasRelacionados->isNotEmpty()) {
+                return response()->json([
+                    'errors' => 'No se puede eliminar este tipo de tema porque está relacionado con temas existentes.',
+                    'temas_relacionados' => $temasRelacionados
+                ], Response::HTTP_CONFLICT); // Código 409: conflicto
+            }
+
+            $tipo->delete();
+
             return response()->json([
-                'errors' => 'Error al eliminar el tipo de tema'
+                'message' => 'Tipo de tema eliminado correctamente.'
+            ], Response::HTTP_OK);
+
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json([
+                'errors' => 'Tipo de tema no encontrado.'
+            ], Response::HTTP_NOT_FOUND);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'errors' => 'Error al eliminar el tipo de tema.',
+                'exception' => $e->getMessage() // Útil para debug (puedes quitar en producción)
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

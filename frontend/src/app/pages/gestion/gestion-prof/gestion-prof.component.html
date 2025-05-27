@@ -15,8 +15,8 @@
             </tr>
         </thead>
         <tbody>
-            <ng-container *ngFor="let prof of profesionales">
-                <tr>
+            <ng-container *ngFor="let prof of profesionales; let i = index">
+                <tr [style]="i % 2 === 0 ? 'background-color: var(--rosa1);' : 'background-color: var(--blanco);'">
                     <td>{{ prof.id }}</td>
                     <td>{{ prof.name }}</td>
                     <td>{{ prof.image }}</td>
@@ -24,45 +24,38 @@
                     <td>{{ prof.specialty }}</td>
                     <td>{{ prof.id_user }}</td>
                     <td>
-                        <button (click)="editar(prof)">Editar</button>
-                        <button (click)="borrar(prof.id)">Borrar</button>
+                        <button class="button-editar" (click)="editar(prof)">Editar</button>
+                        <button class="button-borrar" (click)="borrar(prof.id)">Borrar</button>
                     </td>
                 </tr>
 
                 <tr *ngIf="profesionalEditandoId === prof.id">
                     <td colspan="7">
                         <form (ngSubmit)="guardarCambios()" #form="ngForm">
-                        <label>
-                            Nombre:
-                            <input [(ngModel)]="profesionalEditando.name" name="name" required />
-                        </label>
+                            <h3>Editar Profesional: {{prof.id}}</h3>
+                            <label>
+                                Nombre:
+                                <input [(ngModel)]="profesionalEditando.name" name="name" required />
+                            </label>
 
-                        <label>
-                            Imagen:
-                            <input [(ngModel)]="profesionalEditando.image" name="image" />
-                        </label>
+                            <label>
+                                Imagen:
+                                <input [(ngModel)]="profesionalEditando.image" name="image" />
+                            </label>
 
-                        <label>
-                            Descripción:
-                            <input [(ngModel)]="profesionalEditando.description" name="description" required />
-                        </label>
+                            <label>
+                                Descripción:
+                                <textarea [(ngModel)]="profesionalEditando.description" name="description" required></textarea>
+                            </label>
 
-                        <label>
-                            Especialidad:
-                            <input [(ngModel)]="profesionalEditando.specialty" name="specialty" required />
-                        </label>
-
-                        <!-- <label>
-                            Usuario:
-                            <select [(ngModel)]="profesionalEditando.id_user" name="id_user">
-                                <option *ngFor="let user of users" [ngValue]="user.id">
-                                    {{ user.name }}
-                                </option>
-                            </select>
-                        </label> -->
-
-                        <button type="submit">Guardar</button>
-                        <button type="button" (click)="cancelarEdicion()">Cancelar</button>
+                            <label>
+                                Especialidad:
+                                <input [(ngModel)]="profesionalEditando.specialty" name="specialty" required />
+                            </label>
+                            <label>
+                                <button class="button-guardar" type="submit">Guardar</button>
+                                <button class="button-cancelar" type="button" (click)="cancelarEdicion()">Cancelar</button>                            
+                            </label>
                         </form>
                     </td>
                 </tr>
@@ -70,9 +63,10 @@
         </tbody>
     </table>
 
-    <button type="button" (click)="toggleFormularioCrearProf()">Agregar profesional</button>
+    <button class="button-crear" type="button" (click)="toggleFormularioCrearProf()">Agregar profesional</button>
     <ng-container *ngIf="formularioCrearProf">
-        <form (ngSubmit)="agregarProf()" #form="ngForm">
+        <form class="form-crear" (ngSubmit)="agregarProf()" #form="ngForm">
+            <h3>Nuevo Profesional</h3>
             <label>
                 Nombre:
                 <input [(ngModel)]="nuevoProfesional.name" name="name" required />
@@ -85,7 +79,7 @@
         
             <label>
                 Descripción:
-                <input [(ngModel)]="nuevoProfesional.description" name="description" required />
+                <textarea [(ngModel)]="nuevoProfesional.description" name="description" required></textarea>
             </label>
         
             <label>
@@ -101,9 +95,10 @@
                     </option>
                 </select>
             </label>
-        
-            <button type="submit">Agregar</button>
-            <button type="button" (click)="toggleFormularioCrearProf()">Cancelar</button>
+            <label>
+                <button class="button-guardar" type="submit">Agregar</button>
+                <button class="button-cancelar" type="button" (click)="toggleFormularioCrearProf()">Cancelar</button>
+            </label>
         </form>
     </ng-container>
 </div>
