@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TokenService } from '../../services/token.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,7 @@ import { TokenService } from '../../services/token.service';
 export class NavbarComponent {
   isLoggedIn = inject(TokenService).isAuthenticated(); // esto cambia dependiendo de si el usuario está logueado o no
   isAdmin = inject(TokenService).isAdmin(); // esto cambia dependiendo de si el usuario es admin o no
+  user: User = {} as User;
   menuOpen = false;
   perfilMenuOpen = false;
 
@@ -22,12 +24,26 @@ export class NavbarComponent {
     private tokenService: TokenService
   ){}
 
+  ngOnInit(): void {
+    this.getUser(); // ← se ejecuta al cargar
+  }
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
+    if(!this.menuOpen){
+      this.perfilMenuOpen = false;
+    }
   }
 
   togglePerfilMenu() {
     this.perfilMenuOpen = !this.perfilMenuOpen;
+  }
+
+  getUser(){
+    const user = this.tokenService.getUser();
+    if (user) {
+      this.user = user;
+    }
   }
 
   logout() {

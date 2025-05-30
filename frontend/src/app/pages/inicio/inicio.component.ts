@@ -3,10 +3,11 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { HeaderStateService } from '../../services/header-state.service';
 import { HeaderComponent } from "../../shared/header/header.component";
 import { FooterComponent } from "../../shared/footer/footer.component";
+import { CookiesComponent } from '../../shared/cookies/cookies.component';
 
 @Component({
   selector: 'app-inicio',
-  imports: [PieChartComponent, HeaderComponent, FooterComponent],
+  imports: [PieChartComponent, HeaderComponent, CookiesComponent, FooterComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })

@@ -11,6 +11,7 @@ import { TemaComponent } from './pages/temas/tema/tema.component';
 import { ProfesionalesComponent } from './pages/profesionales/profesionales.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { GestionComponent } from './pages/gestion/gestion.component';
+import { PoliticaCookiesComponent } from './pages/politica-cookies/politica-cookies.component';
 
 
 export const routes: Routes = [
@@ -42,5 +43,6 @@ export const routes: Routes = [
     {path: 'profesionales', component: ProfesionalesComponent, canActivate: [isUserAuthenticatedGuard]},
     {path: 'profesionales/:id', component: ProfesionalesComponent, canActivate: [isUserAuthenticatedGuard]},
     {path: 'gestion', component: GestionComponent, canActivate: [isUserAuthenticatedGuard, isAdminGuard]},
+    {path: 'politica-cookies', component: PoliticaCookiesComponent},
     {path: '**', component: PageNotFoundComponent} // Redirigir a la página de error si la ruta no coincide
 ];

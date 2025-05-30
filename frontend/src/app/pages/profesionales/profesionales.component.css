@@ -8,7 +8,6 @@ main{
 }
 
 .cont-profesionales {
-    border: 3px solid var(--text-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,17 +16,30 @@ main{
 
     .profesional {
         width: 100%;
+        display: flex;
     }
 }
 
+.profesional-cont{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profesional{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .front-card {
-    border: 3px solid var(--text-color);
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 50%;
     gap: 10px;
 
     .title{
@@ -78,4 +90,107 @@ main{
             height: auto;
         }
     }
+}
+
+.back-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    width: 50%;
+    height: 100%;
+    padding: 20px;
+    transition: width 2s;
+}
+
+button{
+  border: none;
+  font-weight: bold;
+  background-color: transparent;
+  cursor: pointer;  
+  padding: 10px;
+  border-radius: 7px;
+  color: var(--text-color);
+}
+
+.button-editar{
+    background-color: var(--rosa-chicle2);
+}
+
+.button-guardar {
+  background-color: var(--verde3);
+  border-radius: 7px;
+  align-self: left;
+
+  &:hover {
+    background-color: var(--verde5);
+  }
+}
+
+.button-cancelar {
+  background-color: var(--rosa4);
+  border-radius: 7px;
+
+  &:hover {
+    background-color: var(--rosa5);
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+
+  label {
+    /* border: 2px solid var(--rosa-chicle5); */
+    width: 50%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+}
+
+.mensaje-exito {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background-color: #d1e7dd;
+  border: 1px solid #badbcc;
+  color: #0f5132;
+  border-radius: 4px;
+}
+
+.mensaje-error {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background-color: #e7d1d1;
+  border: 1px solid #dbbaba;
+  color: #510f0f;
+  border-radius: 4px;
+}
+
+.error {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
 }

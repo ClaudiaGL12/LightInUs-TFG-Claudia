@@ -1,19 +1,62 @@
 <app-header></app-header>
 <main>
     <div class="cont-profesionales">
-        <div *ngFor="let profesional of profesionales; let i = index" class="profesional">
-            <div class="profesional" [ngStyle]="{ 'background-color': i % 2 === 0 ? 'var(--blanco)' : 'var(--rosa2)' }">
+        <div *ngFor="let profesional of profesionales; let i = index" class="profesional-cont">
+            <div class="profesional" [ngStyle]="{'background-color': i % 2 === 0 ? 'var(--blanco)' : 'var(--rosa2)', 'flex-direction': i % 2 === 0 ? 'row' : 'row-reverse'}">
                 <div class="front-card" [ngStyle]="{ 'flex-direction': i % 2 === 0 ? 'row' : 'row-reverse' }">
                     <div class="title">
                         <h2>{{ profesional.name }}</h2>
                         <p>{{ profesional.specialty }}</p>
-                        <button class="profesional-button" [ngStyle]="{'background-color': i % 2 === 0 ? 'var(--rosa-chicle2)' : 'var(--verde3)'}" (mouseenter)="hoveredIndex = i" (mouseleave)="hoveredIndex = -1" [style.background-color]="hoveredIndex === i ? (i % 2 === 0 ? 'var(--rosa-chicle3)' : 'var(--verde4)') : (i % 2 === 0 ? 'var(--rosa-chicle2)' : 'var(--verde3)')">Ver</button>
+                        <button class="profesional-button" (click)="toggleBackCard(profesional.id)" [ngStyle]="{'background-color': i % 2 === 0 ? 'var(--rosa-chicle2)' : 'var(--verde3)'}" (mouseenter)="hoveredIndex = i" (mouseleave)="hoveredIndex = -1" [style.background-color]="hoveredIndex === i ? (i % 2 === 0 ? 'var(--rosa-chicle3)' : 'var(--verde4)') : (i % 2 === 0 ? 'var(--rosa-chicle2)' : 'var(--verde3)')">Ver</button>
                     </div>
                     <div class="image">
                         <img src="{{ profesional.image }}assets/foto 1.png" alt="{{ profesional.name }}">
                     </div>
                 </div>
+                <ng-container *ngIf="profesionalMostrandoId === profesional.id">
+                    <div class="back-card" [ngStyle]="{'background-color': i % 2 === 0 ? 'var(--rosa2)' : 'var(--blanco)'}">
+                        <p>{{ profesional.description }}</p>
+                        <ng-container *ngIf="user.id === profesional.id_user">
+                            <button class="button-editar" (click)="toggleForm(profesional)" [ngStyle]="{'background-color': i % 2 === 0 ? 'var(--verde3)' : 'var(----rosa-chicle2)'}">Editar Perfil</button>
+                        </ng-container>
+                    </div>
+                </ng-container>
             </div>
+            <form (ngSubmit)="guardarCambios()" #form="ngForm" *ngIf="showForm && user.id === profesional.id_user">
+                <h3>Editar Profesional: {{profesional.name}}</h3>
+                <label>
+                    Nombre:
+                    <input [(ngModel)]="profesionalEditando.name" name="name" required />
+                </label>
+                <div class="error" *ngIf="errors?.name">
+                    Introduzca un nombre válido.
+                </div>
+
+                <label>
+                    Imagen:
+                    <input [(ngModel)]="profesionalEditando.image" name="image" />
+                </label>
+
+                <label>
+                    Descripción:
+                    <textarea [(ngModel)]="profesionalEditando.description" name="description" required></textarea>
+                </label>
+                <div class="error" *ngIf="errors?.description">
+                    Introduzca una descripción válida.
+                </div>
+
+                <label>
+                    Especialidad:
+                    <input [(ngModel)]="profesionalEditando.specialty" name="specialty" required />
+                </label>
+                <div class="error" *ngIf="errors?.specialty">
+                    Introduzca una/s especialidad/es válida/as.
+                </div>
+                <label>
+                    <button class="button-guardar" type="submit">Guardar</button>
+                    <button class="button-cancelar" type="button" (click)="cancelarEdicion()">Cancelar</button>                            
+                </label>
+            </form>
         </div>
     </div>
 </main>
