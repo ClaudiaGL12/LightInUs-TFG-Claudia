@@ -44,8 +44,15 @@ class ProfesionalController extends Controller
                 'specialty' => 'required|string',
                 'id_user' => 'required|exists:users,id|unique:profesionales,id_user',
             ]);
-
+   
             $prof = Profesional::create($validated);
+
+            $user = User::find($validated['id_user']);
+            if ($user->role === 'user') {
+                $user->role = 'prof';
+                $user->save();
+            }
+
             return response()->json($prof, Response::HTTP_CREATED);
         } catch (ValidationException $e) {
             return response()->json([
@@ -108,7 +115,16 @@ class ProfesionalController extends Controller
     // Eliminar un profesional
     public function destroy($id) {
         try {
-            Profesional::findOrFail($id)->delete();
+            $prof = Profesional::findOrFail($id);
+            $user = $prof->user;
+
+            $prof->delete();
+
+            if ($user->role === 'prof') {
+                $user->role = 'user';
+                $user->save();
+            }
+            
             return response()->json(['message' => 'Profesional eliminado.'], Response::HTTP_OK);
         } catch (Exception $e) {
             return response()->json([
