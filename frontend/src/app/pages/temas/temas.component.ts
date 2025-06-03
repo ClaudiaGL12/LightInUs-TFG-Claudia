@@ -10,10 +10,11 @@ import { Tema } from '../../models/tema.model';
 import { Token } from '@angular/compiler';
 import { TokenService } from '../../services/token.service';
 import { RouterLink } from '@angular/router';
+import { ChatbotComponent } from './chatbot/chatbot.component';
 
 @Component({
   selector: 'app-temas',
-  imports: [CommonModule, FooterComponent, HeaderComponent, RouterLink],
+  imports: [CommonModule, FooterComponent, HeaderComponent, RouterLink, ChatbotComponent],
   templateUrl: './temas.component.html',
   styleUrl: './temas.component.css'
 })

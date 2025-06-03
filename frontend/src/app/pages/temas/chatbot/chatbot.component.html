@@ -1,0 +1,18 @@
+<div class="cont" [class.open]="abierto">
+    <div class="chat" *ngIf="abierto">
+        <div class="mensajes">
+            <div *ngFor="let msg of mensajes" [class.usuario]="msg.origen === 'usuario'" [class.bot]="msg.origen === 'bot'">
+                {{ msg.texto }}
+            </div>
+        </div>
+        <div class="barra-mensajes">
+            <input [(ngModel)]="mensajeUsuario" (keydown.enter)="enviarMensaje()" placeholder="Escribe tu mensaje..." />
+            <button (click)="enviarMensaje()">Enviar</button>
+        </div>
+    </div>
+    <div class="img" (click)="toggleChat()">
+        <img *ngIf="!abierto" src="/assets/chatbot1.png" alt="">
+        <img *ngIf="abierto" src="/assets/chatbot2.png" alt="">
+    </div>
+</div>
+

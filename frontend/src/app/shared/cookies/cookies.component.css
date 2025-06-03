@@ -24,6 +24,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  border-radius: 10px;
 }
 
 .cookies-content p{
@@ -47,6 +48,10 @@
   font-weight: bolder;
   cursor: pointer;
   margin-top: 1rem;
+
+  &:hover{
+    background-color: var(--rosa-chicle3);
+  }
 }
 
 .cookies-content .close {
@@ -63,5 +68,11 @@
 
   &:hover{
     color: var(--rosa-chicle2);
+  }
+}
+
+@media screen and (max-width: 1000px){
+  .cookies-content {
+    border-radius: 0;
   }
 }

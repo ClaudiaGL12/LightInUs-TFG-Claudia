@@ -1,1 +1,74 @@
-<p>planes works!</p>
+<app-navbar></app-navbar>
+<main>
+    <section>
+        <h2>Planes</h2>
+    </section>
+    <section>
+        <h2>Formularios</h2>
+        <div class="cont-form">
+          <form id="ansiedadForm">
+            <div class="question">
+                <label>1. ¿Con qué frecuencia te sientes nervioso/a o en tensión?</label><br>
+                <input type="radio" name="q1" value="0"> a) Nunca<br>
+                <input type="radio" name="q1" value="1"> b) A veces<br>
+                <input type="radio" name="q1" value="2"> c) Frecuentemente<br>
+                <input type="radio" name="q1" value="3"> d) Casi siempre<br>
+            </div>
+
+            <div class="question">
+                <label>2. ¿Te cuesta relajarte incluso cuando estás en un entorno tranquilo?</label><br>
+                <input type="radio" name="q2" value="0"> a) No, me relajo fácilmente<br>
+                <input type="radio" name="q2" value="1"> b) Solo en ocasiones<br>
+                <input type="radio" name="q2" value="2"> c) Sí, con frecuencia<br>
+                <input type="radio" name="q2" value="3"> d) Siempre<br>
+            </div>
+
+            <div class="question">
+                <label>3. ¿Sientes que no puedes controlar tus preocupaciones?</label><br>
+                <input type="radio" name="q3" value="0"> a) Nunca<br>
+                <input type="radio" name="q3" value="1"> b) A veces<br>
+                <input type="radio" name="q3" value="2"> c) Con frecuencia<br>
+                <input type="radio" name="q3" value="3"> d) Siempre<br>
+            </div>
+
+            <!-- Repite para las 15 preguntas, aquí 3 como ejemplo -->
+            <button type="button" onclick="calcularAnsiedad()">Enviar</button>
+          </form>
+        </div>
+        
+        <div id="result"></div>
+    </section>
+</main>
+<app-footer></app-footer>
+
+<script>
+    function calcularAnsiedad() {
+      const form = document.forms['ansiedadForm'];
+      let total = 0;
+      let answered = 0;
+
+      for (let i = 1; i <= 15; i++) {
+        const selected = form['q' + i]?.value;
+        if (selected !== undefined) {
+          total += parseInt(selected);
+          answered++;
+        }
+      }
+
+      if (answered < 15) {
+        document.getElementById('result').textContent = "❗Por favor, responde todas las preguntas.";
+        return;
+      }
+
+      let resultado;
+      if (total <= 10) {
+        resultado = "Nivel bajo de ansiedad. ✅";
+      } else if (total <= 25) {
+        resultado = "Ansiedad moderada. Considera practicar técnicas de relajación.";
+      } else {
+        resultado = "Alta probabilidad de ansiedad. Sería bueno hablar con un profesional. 🧠";
+      }
+
+      document.getElementById('result').textContent = `Resultado: ${resultado}`;
+    }
+  </script>

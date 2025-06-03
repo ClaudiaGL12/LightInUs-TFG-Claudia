@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ProfesionalController;
 use App\Http\Controllers\Api\TemaController;
 use App\Http\Controllers\Api\TipoTemaController;
 use App\Http\Controllers\Api\FavoritoController;
+use App\Http\Controllers\Api\ChatbotController;
 
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -24,4 +25,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{user}/favoritos', [FavoritoController::class, 'index']);
     Route::post('/users/{user}/favoritos/{tema}', [FavoritoController::class, 'store']);
     Route::delete('/users/{user}/favoritos/{tema}', [FavoritoController::class, 'destroy']);
+    Route::post('/chatbot', [ChatBotController::class, 'recomendarTemas'])->middleware('auth:sanctum');
+
 });
