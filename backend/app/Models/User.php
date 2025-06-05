@@ -71,4 +71,8 @@ class User extends Authenticatable
                     ->withTimestamps()
                     ->using(Favorito::class); 
     }
+
+    public function plans(){
+        return $this->hasMany(Plan::class);
+    }
 }

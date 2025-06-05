@@ -11,123 +11,6 @@ use Exception;
 
 class ChatbotController extends Controller
 {
-    //no funciona pq hay q pagar: openia
-    // public function recomendarTemas(Request $request)
-    // {
-    //      try {
-    //         $request->validate([
-    //             'pregunta' => 'required|string',
-    //         ]);
-
-    //         $temas = Tema::select('name', 'description')->get();
-
-    //         if ($temas->isEmpty()) {
-    //             return response()->json([
-    //                 'errors' => 'No hay temas disponibles para recomendar.'
-    //             ], Response::HTTP_NOT_FOUND);
-    //         }
-
-    //         $prompt = "Disponemos de los siguientes temas:\n";
-    //         foreach ($temas as $tema) {
-    //             $prompt .= "- {$tema->name}: {$tema->description}\n";
-    //         }
-
-    //         $prompt .= "\nCon base en esta lista, responde a esta pregunta del usuario y sugiere los temas más útiles:\n\"{$request->pregunta}\"";
-
-    //         $openaiResponse = Http::withToken(env('OPENAI_API_KEY'))
-    //             ->post('https://api.openai.com/v1/chat/completions', [
-    //                 'model' => 'gpt-3.5-turbo',
-    //                 'messages' => [
-    //                     ['role' => 'system', 'content' => 'Eres un asistente que ayuda a encontrar temas de salud y bienestar.'],
-    //                     ['role' => 'user', 'content' => $prompt],
-    //                 ],
-    //                 'temperature' => 0.5,
-    //             ]);
-
-    //         if ($openaiResponse->failed()) {
-    //             return response()->json([
-    //                 'errors' => 'Error al contactar con el servicio de IA.',
-    //                 'detalles' => $openaiResponse->body(),
-    //                 'status' => $openaiResponse->status(),
-    //                 'body' => $openaiResponse->json(),  
-    //             ], Response::HTTP_BAD_GATEWAY);
-    //         }
-
-    //         $respuesta = $openaiResponse->json('choices.0.message.content');
-
-    //         return response()->json([
-    //             'respuesta' => $respuesta
-    //         ], Response::HTTP_OK);
-
-    //     } catch (Exception $e) {
-    //         return response()->json([
-    //             'errors' => 'Ha ocurrido un error interno.',
-    //             'exception' => $e->getMessage()
-    //         ], Response::HTTP_INTERNAL_SERVER_ERROR);
-    //     }
-    // }
-
-    //usando hugging face: tampoco funciona
-    // public function recomendarTemas(Request $request)
-    // {
-    //     try {
-    //         $request->validate([
-    //             'pregunta' => 'required|string',
-    //         ]);
-
-    //         $temas = Tema::select('name', 'description')->get();
-
-    //         if ($temas->isEmpty()) {
-    //             return response()->json([
-    //                 'errors' => 'No hay temas disponibles para recomendar.'
-    //             ], Response::HTTP_NOT_FOUND);
-    //         }
-
-    //         $listado = "";
-    //         foreach ($temas as $tema) {
-    //             $listado .= "- {$tema->name}: {$tema->description}\n";
-    //         }
-
-    //         $prompt = <<<EOT
-    //             Tengo la siguiente lista de temas:
-
-    //             $listado
-
-    //             La pregunta del usuario es:
-    //             "{$request->pregunta}"
-
-    //             Basándote en la lista, recomienda los temas más relevantes y explica brevemente por qué.
-    //             EOT;
-
-    //         $response = Http::withToken(env('HUGGINGFACE_API_KEY'))
-    //             ->timeout(30)
-    //             ->post("https://api-inference.huggingface.co/models/google/flan-t5-base", [
-    //                 "inputs" => $prompt
-    //             ]);
-
-    //         if ($response->failed()) {
-    //             return response()->json([
-    //                 'errors' => 'Error al contactar con Hugging Face',
-    //                 'body' => $response->json(),
-    //                 'detalles' => $response->body(),
-    //                 'status' => $response->status(),
-    //             ], Response::HTTP_BAD_GATEWAY);
-    //         }
-
-    //         $respuesta = $response->json()[0]['generated_text'] ?? 'No se pudo generar respuesta.';
-
-    //         return response()->json([
-    //             'respuesta' => $respuesta
-    //         ], Response::HTTP_OK);
-
-    //     } catch (\Exception $e) {
-    //         return response()->json([
-    //             'errors' => 'Error interno.',
-    //             'exception' => $e->getMessage()
-    //         ], Response::HTTP_INTERNAL_SERVER_ERROR);
-    //     }
-    // }
-
     //gemini ia
     public function recomendarTemas(Request $request)
     {
@@ -187,7 +70,7 @@ class ChatbotController extends Controller
                 'respuesta' => $respuesta
             ], Response::HTTP_OK);
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json([
                 'errors' => 'Error interno.',
                 'exception' => $e->getMessage()

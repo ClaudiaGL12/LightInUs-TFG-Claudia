@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <app-navbar></app-navbar>
     <div class="introduction">
         <div class="text">
@@ -16,7 +16,7 @@
         </ng-container>
 
         <!-- plantilla q solo se inserta en el dom según el contenedor lógico -->
-        <ng-template #notLogged>
+        <!--<ng-template #notLogged>
             <a routerLink="/login">Iniciar Sesión</a>
             <a routerLink="/signup">Registrarse</a>
         </ng-template>
@@ -85,4 +85,65 @@
                 fill="url(#gradient)" class="movil"/>
         </svg>
     </div>
-</header>
+</header> -->
+<header>
+    <app-navbar></app-navbar>
+    <div class="introduction">
+        <div class="text">
+            <h1 class="no-movil">Déjanos acompañarte en tu lucha</h1>
+            <p>Te ofrecemos orientación, información y ayuda en diversos aspectos de la salud mental. Estamos aquí para acompañarte, porque tu bienestar es nuestra prioridad.</p>
+            
+            <div class="inputs" *ngIf="showInputsAndCharacteristics">
+                <ng-container *ngIf="isLoggedIn; else notLogged">
+                    <a routerLink="/temas">Ver Temas</a>
+                    <a routerLink="/profesionales">Ver Profesionales</a>
+                </ng-container>
+
+                <!-- plantilla q solo se inserta en el dom según el contenedor lógico -->
+                <ng-template #notLogged>
+                    <a routerLink="/login">Iniciar Sesión</a>
+                    <a routerLink="/signup">Registrarse</a>
+                </ng-template>
+            </div>
+        </div>
+        <div class="log">
+            <img src="assets/logoInicio.png">
+        </div>
+    </div>
+    
+    <div class="characteristics" *ngIf="showInputsAndCharacteristics">
+        <div class="characteristic cha-1">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l1.738 1.74A2.25 2.25 0 0 0 2 7.25v7.5A2.25 2.25 0 0 0 4.25 17h11.69l1.494 1.495q-.09.005-.184.005H4.401A3 3 0 0 0 7 20h10.25c.51 0 1-.08 1.46-.229l2.01 2.01a.75.75 0 1 0 1.06-1.061zM14.44 15.5H6.5v-.75a2.25 2.25 0 0 0-2.25-2.25H3.5v-3h.75a2.25 2.25 0 0 0 2.231-1.958l1.636 1.636a3 3 0 0 0 4.206 4.206zm-5.243-5.243l2.046 2.047a1.5 1.5 0 0 1-2.046-2.046M3.5 7.25a.75.75 0 0 1 .75-.75H5v.75a.75.75 0 0 1-.75.75H3.5zm.75 8.25a.75.75 0 0 1-.75-.75V14h.75a.75.75 0 0 1 .75.75v.75zm12.5-3a2.2 2.2 0 0 0-.887.182L17.18 14h.319v.32l1.318 1.317a2.2 2.2 0 0 0 .182-.887v-7.5A2.25 2.25 0 0 0 16.75 5H8.18l1.5 1.5h4.82v.75a2.25 2.25 0 0 0 2.25 2.25h.75v3zm.75-5.25V8h-.75a.75.75 0 0 1-.75-.75V6.5h.75a.75.75 0 0 1 .75.75m2.562 9.631l1.085 1.085c.538-.77.853-1.706.853-2.716V10a3 3 0 0 0-1.5-2.599v7.849a3.24 3.24 0 0 1-.438 1.631"/></svg>
+            </div>
+            <h1>Gratuita</h1>
+            <p class="no-movil">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam officia animi amet nulla quos optio dolor modi sed numquam nesciunt, eius velit dolorem exercitationem aspernatur earum consequuntur delectus? Voluptas, unde?</p>
+        </div>
+        <div class="characteristic cha-2">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l1.738 1.74A2.25 2.25 0 0 0 2 7.25v7.5A2.25 2.25 0 0 0 4.25 17h11.69l1.494 1.495q-.09.005-.184.005H4.401A3 3 0 0 0 7 20h10.25c.51 0 1-.08 1.46-.229l2.01 2.01a.75.75 0 1 0 1.06-1.061zM14.44 15.5H6.5v-.75a2.25 2.25 0 0 0-2.25-2.25H3.5v-3h.75a2.25 2.25 0 0 0 2.231-1.958l1.636 1.636a3 3 0 0 0 4.206 4.206zm-5.243-5.243l2.046 2.047a1.5 1.5 0 0 1-2.046-2.046M3.5 7.25a.75.75 0 0 1 .75-.75H5v.75a.75.75 0 0 1-.75.75H3.5zm.75 8.25a.75.75 0 0 1-.75-.75V14h.75a.75.75 0 0 1 .75.75v.75zm12.5-3a2.2 2.2 0 0 0-.887.182L17.18 14h.319v.32l1.318 1.317a2.2 2.2 0 0 0 .182-.887v-7.5A2.25 2.25 0 0 0 16.75 5H8.18l1.5 1.5h4.82v.75a2.25 2.25 0 0 0 2.25 2.25h.75v3zm.75-5.25V8h-.75a.75.75 0 0 1-.75-.75V6.5h.75a.75.75 0 0 1 .75.75m2.562 9.631l1.085 1.085c.538-.77.853-1.706.853-2.716V10a3 3 0 0 0-1.5-2.599v7.849a3.24 3.24 0 0 1-.438 1.631"/></svg>
+            </div>
+            <h1>Gratuita</h1>
+            <p class="no-movil">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam officia animi amet nulla quos optio dolor modi sed numquam nesciunt, eius velit dolorem exercitationem aspernatur earum consequuntur delectus? Voluptas, unde?</p>
+        </div>
+        <div class="characteristic cha-3">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.28 2.22a.75.75 0 0 0-1.06 1.06l1.738 1.74A2.25 2.25 0 0 0 2 7.25v7.5A2.25 2.25 0 0 0 4.25 17h11.69l1.494 1.495q-.09.005-.184.005H4.401A3 3 0 0 0 7 20h10.25c.51 0 1-.08 1.46-.229l2.01 2.01a.75.75 0 1 0 1.06-1.061zM14.44 15.5H6.5v-.75a2.25 2.25 0 0 0-2.25-2.25H3.5v-3h.75a2.25 2.25 0 0 0 2.231-1.958l1.636 1.636a3 3 0 0 0 4.206 4.206zm-5.243-5.243l2.046 2.047a1.5 1.5 0 0 1-2.046-2.046M3.5 7.25a.75.75 0 0 1 .75-.75H5v.75a.75.75 0 0 1-.75.75H3.5zm.75 8.25a.75.75 0 0 1-.75-.75V14h.75a.75.75 0 0 1 .75.75v.75zm12.5-3a2.2 2.2 0 0 0-.887.182L17.18 14h.319v.32l1.318 1.317a2.2 2.2 0 0 0 .182-.887v-7.5A2.25 2.25 0 0 0 16.75 5H8.18l1.5 1.5h4.82v.75a2.25 2.25 0 0 0 2.25 2.25h.75v3zm.75-5.25V8h-.75a.75.75 0 0 1-.75-.75V6.5h.75a.75.75 0 0 1 .75.75m2.562 9.631l1.085 1.085c.538-.77.853-1.706.853-2.716V10a3 3 0 0 0-1.5-2.599v7.849a3.24 3.24 0 0 1-.438 1.631"/></svg>
+            </div>
+            <h1>Gratuita</h1>
+            <p class="no-movil">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam officia animi amet nulla quos optio dolor modi sed numquam nesciunt, eius velit dolorem exercitationem aspernatur earum consequuntur delectus? Voluptas, unde?</p>
+        </div>
+    </div>
+
+
+</header>    
+<div *ngIf="isTemasRoute" class="intro-header">
+    <h1>Temas</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt temporibus corporis reiciendis necessitatibus, vero doloribus voluptas ipsa mollitia, earum aliquid blanditiis, ducimus praesentium a iure velit obcaecati accusamus. Reiciendis, corporis!
+    </p>
+</div>
+    
+<div *ngIf="isProfesionalesRoute" class="intro-header">
+    <h1>Profesionales</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt temporibus corporis reiciendis necessitatibus, vero doloribus voluptas ipsa mollitia, earum aliquid blanditiis, ducimus praesentium a iure velit obcaecati accusamus. Reiciendis, corporis!</p>
+</div>

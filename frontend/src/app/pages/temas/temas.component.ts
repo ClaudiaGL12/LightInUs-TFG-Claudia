@@ -22,6 +22,7 @@ export class TemasComponent {
   temas: Tema[] = [];
   temasFavoritos: Tema[] = [];
   tipoTemas: TipoTema[] = [];
+  errors: any;
 
   constructor(
     private headerState: HeaderStateService,
@@ -60,7 +61,10 @@ export class TemasComponent {
           tema.isFavorited = true;
           this.temasFavoritos.push(tema);
         },
-        error: err => console.error('Error al añadir a favoritos', err)
+        error: err => {
+          console.error('Error al añadir a favoritos', err);
+          this.errors = err.errors;
+        }
       });
     }
   }

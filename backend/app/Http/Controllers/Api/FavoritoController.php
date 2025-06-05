@@ -44,10 +44,18 @@ class FavoritoController extends Controller
             $user = User::findOrFail($userId);
             $tema = Tema::findOrFail($temaId);
 
+            // verificar si ya tiene el tema en favoritos
             if ($user->favoritos()->where('temas.id', $temaId)->exists()) {
                 return response()->json([
                     'message' => 'El tema ya está en favoritos.'
                 ], Response::HTTP_CONFLICT);
+            }
+
+            // Verificar si ya tiene 10 favoritos
+            if ($user->favoritos()->count() >= 10) {
+                return response()->json([
+                    'message' => 'No puedes tener más de 10 temas en favoritos.'
+                ], Response::HTTP_FORBIDDEN);
             }
 
             $user->favoritos()->attach($temaId);
@@ -71,7 +79,7 @@ class FavoritoController extends Controller
     {
         try {
             $user = User::findOrFail($userId);
-            $tema = Tema::findOrFail($temaId);
+            // $tema = Tema::findOrFail($temaId);
 
             if (! $user->favoritos()->where('temas.id', $temaId)->exists()) {
                 return response()->json([

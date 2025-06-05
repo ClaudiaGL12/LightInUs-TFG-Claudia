@@ -4,7 +4,8 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    bottom: 200px;
+    /* bottom: 200px; */
+    bottom:10%;
     left: -60px;
     transition: left 0.3s;
     z-index: 100;
@@ -47,6 +48,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 5px;
+    overflow: hidden;
 }
 
 .barra-mensajes{
@@ -77,6 +79,15 @@
             background-color: var(--rosa4);
         }
     }
+}
+
+.title{
+    background-color: var(--rosa2);
+    padding: 10px;
+    width: 300px; /*mismo tamaño contenedor chat*/
+    margin-top: -20px; /*mismo tamaño padding contenedor chat*/
+    text-align: center;
+    color: var(--text-color);
 }
 
 .mensajes{

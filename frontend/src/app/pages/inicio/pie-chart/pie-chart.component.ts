@@ -36,7 +36,7 @@ export class PieChartComponent {
     type: 'pie'
   },
   labels: ['Team A', 'Team B', 'Team C'],
-  colors: ['var(--rosa3)', 'var(--rosa4)', 'var(--verde4)'],
+  colors: ['var(--rosa2)', 'var(--rosa3)', 'var(--verde3)'],
   dataLabels: {
     style: {
       fontSize: '18px', // tamaño del número dentro del gráfico

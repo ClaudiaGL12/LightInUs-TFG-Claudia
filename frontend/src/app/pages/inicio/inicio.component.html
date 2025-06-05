@@ -9,22 +9,11 @@
 
     <div class="information no-movil">
         <div class="information-1">
+            <div class="img">
+                <img src="/assets/ilustracionInicio1.png" alt="">
+            </div>
             <div class="info-description1">
                 <p>Inestabilidad, sentimientos reprimidos,Lorem ipsum dolor sit amet consectetur adipiscing elit fringilla sem, montes ut praesent tristique ad ultricies pulvinar vehicula n pharetra hendrerit.</p>
-            </div>
-            <div class="percentage-info">
-                <div class="percentage">
-                    <p><b>20%</b> personas pipipipi</p>
-                </div>
-                <div class="percentage">
-                    <p><b>20%</b> personas pipipipi</p>
-                </div>
-                <div class="percentage">
-                    <p><b>20%</b> personas pipipipi</p>
-                </div>
-                <div class="percentage">
-                    <p><b>20%</b> personas pipipipi</p>
-                </div>
             </div>
         </div>
 
@@ -45,8 +34,16 @@
     <div class="info-pages">
         <h1>Contenido</h1>
         <div class="cont-pages">
-            <div class="page temas"></div>
-            <div class="page profesionales"></div>
+            <div class="page temas">
+                <h2>Temas</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum voluptatem unde exercitationem, eaque aspernatur molestiae quaerat deleniti quam illum modi a accusamus vero nulla id asperiores sed! Atque, quo blanditiis!</p>
+                <a routerLink="{{ isLoggedIn ? '/temas' : '/login' }}">Ver</a>
+            </div>
+            <div class="page profesionales">
+                <h2>Profesionales</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum voluptatem unde exercitationem, eaque aspernatur molestiae quaerat deleniti quam illum modi a accusamus vero nulla id asperiores sed! Atque, quo blanditiis!</p>
+                <a routerLink="{{ isLoggedIn ? '/profesionales' : '/login' }}">Ver</a>
+            </div>
         </div>
     </div>
 

@@ -5,6 +5,7 @@
   background-color: var(--rosa2);
   color: var(--blanco);
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
@@ -139,7 +140,6 @@
 /* Responsive */
 @media screen and (max-width: 1000px) {
   .navbar {
-    flex-wrap: wrap;
     padding: 0;
 
     .navbar-left{
@@ -230,8 +230,6 @@
         text-align: left;
       }
     }
-
-    
 
     .img-perfil {
       display: none;
