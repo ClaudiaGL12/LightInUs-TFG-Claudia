@@ -1,134 +1,206 @@
-# Proyecto Fin de Grado: Light in us
+# Proyecto Fin de Grado – Aplicación Web sobre Psicología y Salud Mental
 
-**Autor**: Claudia Gómez Luna  
-**Curso**: 2º DAW – IES MARTÍNEZ MONTAÑÉS  
-**Repositorio GitHub**: [ProyectoFinGrado](https://github.com/ClaudiaGL12/ProyectoFinGrado.git)  
-**Prototipo Figma**: [Ver diseño](https://www.figma.com/proto/uhKB1UMDapL9J34AKYeOR5/ProyectoFinGrado-Claudia?node-id=0-1&t=CWR01Ry2ftzokGS1-1)
+## Índice
+
+1. [Descripción del Proyecto](#1-descripción-del-proyecto)  
+   1.1. [Justificación del Proyecto](#11-justificación-del-proyecto)  
+   1.2. [Alcance del Proyecto](#12-alcance-del-proyecto)  
+   1.3. [Valoración de Alternativas Existentes](#13-valoración-de-alternativas-existentes)  
+   1.4. [Stack Tecnológico](#14-stack-tecnológico)  
+2. [Objetivos](#2-objetivos)  
+   2.1. [Requisitos del Sistema](#21-requisitos-del-sistema)  
+   2.2. [Descripción de Casos de Uso](#22-descripción-de-casos-de-uso)  
+3. [Modelo y Diseño de la Base de Datos](#3-modelo-y-diseño-de-la-base-de-datos)  
+4. [Proceso de Autenticación](#4-proceso-de-autenticación)  
+5. [Guía de Estilos y Prototipado (Figma)](#5-guía-de-estilos-y-prototipado-figma)  
+6. [Mapa de Navegación](#6-mapa-de-navegación)  
+7. [Manual de Usuario y Lista de Pantallas](#7-manual-de-usuario-y-lista-de-pantallas)  
+8. [Pruebas de Despliegue](#8-pruebas-de-despliegue)  
+9. [Evaluación del Resultado Final](#9-evaluación-del-resultado-final)  
 
 ---
 
 ## 1. Descripción del Proyecto
 
-Este proyecto consiste en una aplicación web centrada en la **psicología y la salud mental**. Su objetivo es informar y ofrecer herramientas sobre trastornos como depresión, ansiedad, espectro autista y manipulación emocional, además de planes personalizados basados en un cuestionario.
+Este proyecto consiste en el desarrollo de una aplicación web centrada en la psicología y la salud mental. Su objetivo principal es proporcionar información relevante y herramientas sobre diversos trastornos mentales y situaciones de abuso, como depresión, ansiedad, espectro autista y manipulación emocional.
 
-- Contenido gratuito ofrecido por profesionales voluntarios.  
-- Requiere registro para acceder a contenido completo.  
+Con lo anterior proporcionado, la plataforma pretende ayudar a los usuarios a identificar patrones, comprenderse mejor a sí mismos y manejar distintas situaciones. Además, se ofrecerá un plan de salud mental personalizado, basado en un cuestionario detallado (en desarrollo). 
 
-### Estructura de la aplicación:
+Todo el contenido será gratuito gracias a la colaboración de voluntarios profesionales, con la única condición de que los usuarios se registren para acceder a la información completa.
 
-- **Inicio**: Introducción + formularios (sugerencias y donaciones).
-- **Temas**: Información por categoría + sistema de favoritos.
-- **Profesionales**: Perfiles de voluntarios.
-- **Plan de salud mental**: Cuestionario y generación de plan personalizado.
-- **Perfil**: Gestión de usuario (registrado vs visitante).
-- **Foro** *(en desarrollo)*: Espacio para interacción y administración.
+### Secciones de la aplicación:
 
----
-
-## 1.1 Justificación del Proyecto
-
-La salud mental es vital, pero el acceso a terapia puede ser limitado. Esta plataforma busca **normalizar la salud mental**, dar apoyo a quienes enfrentan abuso o problemas emocionales, y servir como recurso accesible y confiable.
+- **Inicio:** Descripción general de la plataforma, política de cookies, sección de preguntas frecuentes, formulario de dudas y sugerencias, y en el futuro, formulario de donaciones.
+- **Login y Sign up:** Registro e inicio de sesión. Se contempla implementar recuperación de contraseña por correo electrónico.
+- **Temas:** Información sobre distintos aspectos de la salud mental. Usuarios registrados pueden marcar hasta 10 favoritos. Se incluye un chatbot de ayuda.
+- **Profesionales:** Perfiles de los voluntarios que aportan contenido. Ellos mismos pueden editar su perfil.
+- **Planes (en desarrollo):** Formularios que generan planes personalizados con IA. Gratuito las 3 primeras veces.
+- **Perfil:** Ventana emergente para usuarios registrados con datos y botón de cerrar sesión.
+- **Foro (idea en desarrollo):** Espacio para interacción entre usuarios. Habrá chat exclusivo para administradores y profesionales.
+- **Gestión:** Solo para administradores. Gestión de profesionales, temas y tipos de temas.
+- **Política de Cookies:** Accesible desde el pie de página y ventana emergente.
 
 ---
 
-## 1.2 Alcance del Proyecto
+## 1.1. Justificación del Proyecto
 
-- Registro e inicio de sesión.
-- Roles: Administrador, Profesional, Usuario.
-- Base de datos: temas, perfiles, usuarios.
-- Interfaz responsiva y accesible.
+Elegí este tema porque muchas personas no tienen acceso a terapia por razones económicas o geográficas. Además, muchas veces no saben cómo pedir ayuda, o temen ser juzgados.
 
----
-
-## 1.3 Valoración de Alternativas Existentes
-
-Otras plataformas no ofrecen:
-- Personalización.
-- Autenticación.
-- Herramientas prácticas y estructuradas.
+Esta aplicación busca ofrecer información verificada por profesionales y herramientas prácticas para la autogestión emocional. También incluye redes sociales de apoyo y un número de WhatsApp en el pie de página.
 
 ---
 
-## 1.4 Stack Tecnológico
+## 1.2. Alcance del Proyecto
 
-- **Frontend**: Angular (HTML, CSS, Bootstrap, TS, JS)
-- **Backend**: Laravel (API RESTful)
-- **Base de Datos**: MySQL
-- **Despliegue**: Docker
+### Funcionalidades:
+
+- Autenticación: Registro e inicio de sesión.
+- Roles: Administrador, Profesional y Usuario registrado.
+- Base de datos: Temas, tipos de temas, usuarios y profesionales.
+- IA: Chatbot para recomendaciones y planes personalizados.
+- Interfaz responsive e intuitiva.
+
+---
+
+## 1.3. Valoración de Alternativas Existentes
+
+Existen muchos recursos, pero carecen de personalización, autenticación o una visión integral. Esta aplicación ofrece:
+
+- Contenido centralizado y validado.
+- Perfil de los autores.
+- Planes personalizados mediante IA.
+
+---
+
+## 1.4. Stack Tecnológico
+
+- **Frontend:** Angular 19 (HTML, CSS, Bootstrap, TypeScript, JavaScript)
+- **Backend:** Laravel 12 (API RESTful)
+- **Base de Datos:** MySQL
+- **Despliegue:** XAMPP
 
 ---
 
 ## 2. Objetivos
 
-1. Contenido validado por profesionales.
-2. Recursos de emergencia.
-3. Personalización (favoritos y planes).
-4. Interfaz accesible.
-5. Privacidad y seguridad.
+- Ofrecer contenido validado.
+- Incluir teléfonos de emergencia y contactos útiles.
+- Experiencia personalizada para usuarios registrados.
+- Interfaz accesible y adaptable.
+- Privacidad y seguridad de datos.
 
 ---
 
-## 2.1 Requisitos del Sistema
+## 2.1. Requisitos del Sistema
 
 ### Funcionales:
-- Autenticación (roles diferenciados).
-- Gestión de contenido.
-- Máximo 10 favoritos.
-- Hasta 3 planes gratuitos.
-- Formularios (sugerencias y donaciones).
-- Foro segmentado por tipo de usuario.
 
-### No funcionales:
-- Seguridad y buenas prácticas.
-- Escalabilidad y disponibilidad.
-- Diseño responsive.
+- Autenticación con roles.
+- Gestión de contenido por administradores y profesionales.
+- Favoritos (máximo 10).
+- Planes personalizados (3 gratuitos).
+- Formularios de sugerencias y donaciones.
+- Foros según tipo de usuario.
+
+### No Funcionales:
+
+- Seguridad en el tratamiento de datos.
+- Responsive y accesible en todos los dispositivos.
 
 ### Interfaz:
-- Colores y tipografía accesibles.
-- Navegación intuitiva.
+
+- Colores adecuados, fuentes legibles.
+- Menú estructurado con accesos rápidos.
+- Sección de favoritos visible.
 
 ---
 
-## 2.2 Casos de Uso
+## 2.2. Descripción de Casos de Uso
 
-1. Registro/inicio sesión.
-2. Agregar favoritos.
-3. Gestión de perfiles profesionales.
-4. Envío de sugerencias.
+- **Navegación sin sesión:** Solo se puede ver Inicio, Login, Registro y Política de Cookies.
+- **Registro e inicio de sesión:** Acceso al contenido tras autenticación.
+- **Favoritos:** Marcado de hasta 10 temas favoritos.
+- **Profesionales:** Edición de su propio perfil.
+- **Administrador:** Gestión completa del contenido desde sección "Gestión".
 
 ---
 
-##  3. Modelo y Diseño de la Base de Datos
+## 3. Modelo y Diseño de la Base de Datos
 
-![base de datos](https://drive.google.com/file/d/1u8luC4revwsJai8mN5nGKH-RdpsRYAcb/view?usp=drive_link)
+*(Ver esquema o archivo asociado en la carpeta del proyecto)*
 
 ---
 
 ## 4. Proceso de Autenticación
 
-Incluye roles y gestión de acceso.  
-Más info: [Repositorio GitHub](https://github.com/ClaudiaGL12/ProyectoFinGrado.git)
+Repositorio GitHub: `proyecto claudia`  
+Incluye autenticación mediante Laravel y control de roles.
 
 ---
 
-## 5. Guía de estilos y prototipado (Figma)
+## 5. Guía de Estilos y Prototipado (Figma)
 
-Diseño adaptable en desarrollo:  
-[Figma - Proyecto Claudia](https://www.figma.com/proto/uhKB1UMDapL9J34AKYeOR5/ProyectoFinGrado-Claudia?node-id=0-1&t=CWR01Ry2ftzokGS1-1)
+Diseño responsivo y accesible disponible en Figma:  
+**Proyecto Figma:** `proyecto claudia`
 
 ---
 
 ## 6. Mapa de Navegación
 
-### Visitantes:
-- Inicio, Login, Registro  
-(otras secciones requieren autenticación)
+### Usuarios sin sesión:
+
+- Inicio
+- Login
+- Registro
+- Política de Cookies
+
+Acceso a otras secciones restringido.
 
 ### Usuarios registrados:
-- Temas (por categorías + favoritos)
-- Profesionales (con edición si es profesional)
-- Foro (público + foro admins/profesionales)
-- Planes personalizados
-- Perfil y logout
-- Gestión (solo administradores)
-![mapa de navegación](https://drive.google.com/file/d/1y2v2F5N1IYU9iM7-krzQgzfPbuenU-Ji/view?usp=drive_link)
+
+- **Temas:** Visualización y favoritos.
+- **Profesionales:** Visualización y edición (si es profesional).
+- **Foro (próximamente):** Públicos y privados.
+- **Planes:** Formularios y planes propios.
+- **Perfil:** Datos y cerrar sesión.
+- **Gestión (admin):** Administración completa.
+
+---
+
+## 7. Manual de Usuario y Lista de Pantallas
+
+Se incluye en una presentación adjunta:  
+**Archivo:** `Manual de usuario`
+
+---
+
+## 8. Pruebas de Despliegue
+
+- **Máquina virtual:** 1574
+- Clonado del repositorio
+- Laravel:
+  - `.env`
+  - `composer install`
+- Angular:
+  - `npm install`
+  - `Set-ExecutionPolicy Unrestricted` en PowerShell
+- Despliegue local con vercel para el frontend y render para el backend
+
+---
+
+## 9. Evaluación del Resultado Final
+
+**URL de despliegue:** [ligthinus.com](http://ligthinus.com)
+
+Este proyecto ha sido un gran reto de aprendizaje. Las mayores dificultades han sido:
+
+- Integrar una IA funcional sin coste.
+- Aprender Angular 19 desde cero.
+
+### Mejoras futuras:
+
+- Notificaciones de cambios en perfiles.
+- Sistema de donaciones.
+- Mejora de los formularios y calidad de los planes.
+- Implementación del foro completo.
+- Envío de formularios a administradores.
