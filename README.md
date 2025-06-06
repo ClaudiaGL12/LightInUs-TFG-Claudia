@@ -58,9 +58,9 @@ Por ello, esta aplicación busca ofrecer información dada por profesionales, as
 
 - **Autenticación**: Registro e inicio de sesión.
 - **Roles**: 
-    Administrador: Gestionar la configuración y contenido de la plataforma.
-    Profesional: Editar su información en la página "Profesionales".
-    Usuario registrado: Ver la información sobre Temas y Profesionales, y crear planes.
+    - Administrador: Gestionar la configuración y contenido de la plataforma.
+    - Profesional: Editar su información en la página "Profesionales".
+    - Usuario registrado: Ver la información sobre Temas y Profesionales, y crear planes.
 - **Base de datos**: Almacenamiento de información sobre los temas tratados, los tipos de temas que hay, los perfiles de los profesionales, gestión de usuarios, los planes de salud mental de cada uno de ellos y sus temas favoritos.
 - IA: Chatbot para recomendaciones y planes personalizados.
 - Interfaz responsive e intuitiva.
@@ -99,23 +99,22 @@ Mi aplicación se diferencia al ofrecer una experiencia estructurada y personali
 ### Funcionales:
 
 - Autenticación de usuarios:
-    Registro e inicio de sesión.
-    Diferenciación entre usuarios registrados, administradores y profesionales.
-    Si están registrados podrán acceder a las diferentes secciones completamente.
+    - Registro e inicio de sesión.
+    - Diferenciación entre usuarios registrados, administradores y profesionales.
+    - Si están registrados podrán acceder a las diferentes secciones completamente.
 - Gestión de contenido por administradores y profesionales:
-    Administración de la información sobre salud mental.
-    Los profesionales podrán modificar los sus perfiles en Profesionales.
+    - Administración de la información sobre salud mental.
+    - Los profesionales podrán modificar los sus perfiles en Profesionales.
 - Favoritos (máximo 10 por usuario).
 - Planes personalizados (3 gratuitos por usuario).
 - Formularios de sugerencias y donaciones.
-- Foros:
-    Según el tipo de usuario, podrás acceder a diferentes foros y comunicarte con otros usuarios. Si eres profesional o administrador, tendrás acceso a un foro concreto sobre la administración de la información.
+- Foros: Según el tipo de usuario, podrás acceder a diferentes foros y comunicarte con otros usuarios. Si eres profesional o administrador, tendrás acceso a un foro concreto sobre la administración de la información.
 
 ### No Funcionales:
 
 - Seguridad:
-    Protección de datos de los usuarios.
-    Implementación de buenas prácticas en la gestión de credenciales.
+    - Protección de datos de los usuarios.
+    - Implementación de buenas prácticas en la gestión de credenciales.
 - Escalabilidad y Disponibilidad:
 - Diseño responsive compatible con todos los dispositivos
 
@@ -131,20 +130,20 @@ Mi aplicación se diferencia al ofrecer una experiencia estructurada y personali
 ## 2.2. Descripción de Casos de Uso
 
 - Navegación entre páginas
-    Actor: Usuario (sin iniciar sesión)
-    Flujo: No debe de poder navegar a ninguna url. Solo puede ver el login, sign up, política de cookies e inicio.
+    - Actor: Usuario (sin iniciar sesión)
+    - Flujo: No debe de poder navegar a ninguna url. Solo puede ver el login, sign up, política de cookies e inicio.
 - Registro e inicio de sesión
-    Actor: Usuario.
-    Flujo: El usuario se registra proporcionando un correo y contraseña. Tras registrarse, puede iniciar sesión.
+    - Actor: Usuario.
+    - Flujo: El usuario se registra proporcionando un correo y contraseña. Tras registrarse, puede iniciar sesión.
 - Añadir temas a favoritos
-    Actor: Usuario registrado.
-    Flujo: El usuario selecciona un tema y lo marca como favorito. Si alcanza el límite de 10 temas, deberá eliminar uno antes de agregar otro y le saldrá un mensaje de que solo puede añadir 10 temas.
+    - Actor: Usuario registrado.
+    - Flujo: El usuario selecciona un tema y lo marca como favorito. Si alcanza el límite de 10 temas, deberá eliminar uno antes de agregar otro y le saldrá un mensaje de que solo puede añadir 10 temas.
 - Gestión de perfiles profesionales
-    Actor: Profesional.
-    Flujo: Los profesionales pueden modificar sólo la información de su perfil.
+    - Actor: Profesional.
+    - Flujo: Los profesionales pueden modificar sólo la información de su perfil.
 - Gestión de datos
-    Actor: Administrador
-    Flujo: Puede agregar, modificar y eliminar los datos en la sección “Gestión” y se guardará correctamente cualquier modificación.
+    - Actor: Administrador
+    - Flujo: Puede agregar, modificar y eliminar los datos en la sección “Gestión” y se guardará correctamente cualquier modificación.
 
 ---
 
