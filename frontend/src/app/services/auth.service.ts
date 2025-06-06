@@ -29,6 +29,10 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
+    localStorage.removeItem('user');
+    localStorage.removeItem('cookiesAceptadas');
+    localStorage.removeItem('access_token');
+    window.location.href = '/'
     return this.http.delete(`${this.apiURL}/logout`);
   }
 }
