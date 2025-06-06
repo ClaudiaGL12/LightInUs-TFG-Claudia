@@ -149,7 +149,7 @@ Mi aplicación se diferencia al ofrecer una experiencia estructurada y personali
 
 ## 3. Modelo y Diseño de la Base de Datos
 
-*(Ver esquema o archivo asociado en la carpeta del proyecto)*
+![Modelo y diseño BBDD](image.png)
 
 ---
 
@@ -187,6 +187,7 @@ Aunque visualmente se muestran otras secciones en la barra de navegación, si se
 - **Perfil:** Datos y cerrar sesión.
 - **Gestión (admin):** Administración completa.
 
+![Mapa de navegación](image-1.png)
 ---
 
 ## 7. Manual de Usuario y Lista de Pantallas
