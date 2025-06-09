@@ -1,5 +1,5 @@
 <div class="cont" [class.open]="abierto">
-    <div class="chat" *ngIf="abierto">
+    <div class="chat no-movil" *ngIf="abierto">
         <div class="title">
             <p>Chat Bot</p>
         </div>
@@ -12,6 +12,9 @@
             <input [(ngModel)]="mensajeUsuario" (keydown.enter)="enviarMensaje()" placeholder="Escribe tu mensaje..." />
             <button (click)="enviarMensaje()">Enviar</button>
         </div>
+    </div>
+    <div class="chat movil" *ngIf="abierto">
+        <p>Para un mejor uso, usar ordenador</p>
     </div>
     <div class="img" (click)="toggleChat()">
         <img *ngIf="!abierto" src="/assets/chatbot1.png" alt="">

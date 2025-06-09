@@ -37,6 +37,7 @@ footer{
         align-items: center;
         padding: 9px;
         color: var(--blanco);
+        cursor: pointer;
         
         svg {
             width: 100%;

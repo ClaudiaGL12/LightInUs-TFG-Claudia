@@ -30,6 +30,7 @@
 
   <div *ngFor="let tipoTema of tipoTemas" class="cont-temas">
     <ng-container *ngIf="tieneTemasPorTipo(tipoTema.code)">
+      <hr>
       <h2>{{ tipoTema.name }}</h2>
       <div class="tema" *ngFor="let tema of getTemasPorTipo(tipoTema.code)">
         <div class="tema-header">
