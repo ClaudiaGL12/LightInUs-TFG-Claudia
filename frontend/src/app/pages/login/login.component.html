@@ -10,7 +10,7 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
         <h2>Iniciar Sesión</h2>
-        <div class="error" *ngIf="errors?.password">
+        <div class="error" *ngIf="errors?.password  || errors?.email">
             La contraseña o el email es incorrecto.
         </div>
         <div class="form-group">
