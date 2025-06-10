@@ -343,6 +343,12 @@ form {
         gap: 20px;
         color: var(--text-color);
     }
+
+    .infoExtra{
+        .contPreguntas{
+            height: auto;
+        }
+    }
 }
 
 @media screen and (max-width: 760px) {
