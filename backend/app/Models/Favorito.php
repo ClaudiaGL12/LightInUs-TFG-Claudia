@@ -11,10 +11,7 @@ class Favorito extends Pivot
     protected $keyType = 'string'; // Laravel requiere esto aunque no lo uses
 
     protected $table = 'favoritos';
-    protected $fillable = [
-        'id_user',
-        'id_tema',
-    ];
+    protected $fillable = ['id_user', 'id_tema'];
 
     public $timestamps = true;
 }

@@ -9,11 +9,7 @@ class TipoTema extends Model
 {
     protected $table = 'tipo_temas';
 
-    protected $fillable = [
-        'code',
-        'name',
-        'description',
-    ];
+    protected $fillable = ['code', 'name', 'description'];
 
     /**
      * Relación uno a muchos con Tema

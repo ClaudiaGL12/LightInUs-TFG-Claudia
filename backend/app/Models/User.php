@@ -72,6 +72,9 @@ class User extends Authenticatable
                     ->using(Favorito::class); 
     }
 
+    /**
+     * Relación: Un usuario puede tener planes.
+     */
     public function plans(){
         return $this->hasMany(Plan::class);
     }

@@ -94,18 +94,6 @@ class TipoTemaController extends Controller
         }
     } 
 
-    // Eliminar un tipo de tema
-    // public function destroy($id) {
-    //     try {
-    //         TipoTema::findOrFail($id)->delete();
-    //         return response()->json(['message' => 'Tipo de tema eliminado.'], Response::HTTP_OK);
-    //     } catch (Exception $e) {
-    //         return response()->json([
-    //             'errors' => 'Error al eliminar el tipo de tema'
-    //         ], Response::HTTP_INTERNAL_SERVER_ERROR);
-    //     }
-    // }
-
     public function destroy($id){
         try {
             $tipo = TipoTema::findOrFail($id);

@@ -139,7 +139,7 @@ main {
         align-items: center;
         text-align: justify;
         overflow: hidden;
-        transition: width 0.5s, gap 0.5s, box-shadow 0.5s;
+        transition: scale 0.3s;
 
         h2{
             background-color: var(--rosa2);
@@ -166,9 +166,8 @@ main {
         }
 
         &:hover{
-            width: 350px;
+            scale: 1.1;
             box-shadow: 0 1px 3px 3px rgba(177, 177, 177, 0.274);
-            gap: 30px;
         }
     }
 }
@@ -179,6 +178,144 @@ main {
 
 .no-movil {
     display: block;
+}
+
+
+
+/*preguntas*/
+.infoExtra {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  height: auto;
+  min-height: 400px;
+  border: 3px solid var(--rosa-chicle4);
+
+    .imagen {
+        background-image: linear-gradient(rgba(250, 180, 197, 0.4), rgba(250, 180, 197, 0.4)), url(/assets/fotoT2.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: auto;
+        width: 40%;
+        height: 600px;
+    }
+    
+    .contPreguntas {
+        width: 60%;
+        height: 600px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h2{
+            margin-top: 40px;
+        }
+
+        .preguntas {
+            padding: 50px;
+            text-align: left;
+            margin: auto;
+            height: 100%;
+
+            .contPregunta {
+                border-bottom: 2px solid #171717;
+                padding-bottom: 10px;
+
+                .pregunta {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    transition: border 0.3s ease;
+
+                    &.activado {
+                        border-left: 5px solid var(--rosa-chicle3);
+                        background-color: var(--rosa1);
+                    }
+
+                    &.no-activado {
+                        background-color: var(--blanco);
+                    }
+
+                    .extend {
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: max-height 0.4s ease, opacity 0.3s ease;
+                        opacity: 0;
+
+                        &.activo {
+                            display: block;
+                            opacity: 1;
+                            margin-bottom: 10px;
+                        }
+
+                        &.no-activo {
+                            display: none;
+                            opacity: 0;
+                        }
+
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+
+    input {
+        border: 3px solid var(--rosa2);
+        padding: 5px;
+        border-radius: 15px;
+        width: 300px;
+    }
+
+    textarea {
+        min-height: 100px;
+        max-height: 100px;
+        width: 300px;
+    }
+                            
+    .btn {
+        background-color: var(--rosa2);
+        text-decoration: none;
+        color: var(--blanco);
+        padding: 15px;
+        border-radius: 15px;
+        border: none;
+        cursor: pointer;
+        border: none;
+        padding: 10px;
+        width: auto;
+        
+        &:hover {
+            background-color: var(--rosa-chicle2);
+            color: var(--text-color);
+        }
+    }
+}
+
+
+.activo {
+  display: block;
+}
+
+.no-activo {
+  display: none;
 }
 
 @media screen and (max-width: 1600px) {
@@ -196,6 +333,15 @@ main {
 
     .no-movil {
         display: none;
+    }
+
+    .cont-pages {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        color: var(--text-color);
     }
 }
 

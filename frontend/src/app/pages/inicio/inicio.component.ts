@@ -7,10 +7,11 @@ import { CookiesComponent } from '../../shared/cookies/cookies.component';
 import { RouterLink } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 import { inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-inicio',
-  imports: [RouterLink, PieChartComponent, HeaderComponent, CookiesComponent, FooterComponent],
+  imports: [CommonModule, RouterLink, PieChartComponent, HeaderComponent, CookiesComponent, FooterComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
@@ -28,5 +29,19 @@ export class InicioComponent {
   }
   
   
+  //preguntas del final
+  preguntaAbiertaIndex: number | null = null;
+
+  preguntas = [
+    { titulo: '¿Lorem ipsum dolor sit?', respuesta: 'Respuesta 1', tipo: 'texto' },
+    { titulo: '¿Cómo contactar con nosotros?', respuesta: 'Puedes escribirnos a contacto@lightinus.com', tipo: 'texto' },
+    { titulo: '¿Dónde puedo encontrar ayuda?', respuesta: 'Visita la sección de profesionales.', tipo: 'texto' },
+    { titulo: '¿Cómo puedo aportar?', respuesta: 'Puedes colaborar como voluntario.', tipo: 'texto' },
+    { titulo: '¿Te gustaría contactarnos directamente?', tipo: 'formulario' }
+  ];
+
+  togglePregunta(index: number) {
+    this.preguntaAbiertaIndex = this.preguntaAbiertaIndex === index ? null : index;
+  }
    
 }

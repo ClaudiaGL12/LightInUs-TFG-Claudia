@@ -121,4 +121,29 @@ export class ProfesionalesComponent {
       }
     });
   }
+
+
+
+  //formulario
+  voluntario = {
+    nombre: '',
+    email: '',
+    mensaje: ''
+  };
+
+  mensajeConfirmacion: string = '';
+
+  enviarSolicitud() {
+    // Aquí podrías conectar con backend, FormSubmit, o simplemente mostrar confirmación:
+    console.log('Solicitud enviada:', this.voluntario);
+
+    this.mensajeConfirmacion = '¡Gracias por tu interés en colaborar como voluntario! Nos pondremos en contacto contigo pronto.';
+
+    // Limpia el formulario
+    this.voluntario = {
+      nombre: '',
+      email: '',
+      mensaje: ''
+    };
+  }
 }

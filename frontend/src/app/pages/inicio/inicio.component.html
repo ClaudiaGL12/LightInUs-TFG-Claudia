@@ -52,11 +52,40 @@
 
     <div class="donations"></div>
 
-    <div class="cont-form">
-        <div>
-            <img src="" alt="">
+    <section class="infoExtra">
+        <div class="imagen no-movil"></div>
+        <div class="contPreguntas">
+            <h2>¿Tienes preguntas?</h2>
+            <div class="preguntas">
+            <div 
+                class="contPregunta" 
+                *ngFor="let pregunta of preguntas; let i = index"
+                (click)="togglePregunta(i)"
+            >
+                <div class="pregunta" [ngClass]="{ 'activado': preguntaAbiertaIndex === i, 'no-activado': preguntaAbiertaIndex !== i }">
+                <h3>{{ pregunta.titulo }}</h3>
+                <p>{{ preguntaAbiertaIndex === i ? 'x' : '+' }}</p>
+                </div>
+
+                <div class="extend" [ngClass]="{ 'activo': preguntaAbiertaIndex === i, 'no-activo': preguntaAbiertaIndex !== i }" (click)="$event.stopPropagation()">
+                <ng-container *ngIf="pregunta.tipo === 'texto'">
+                    <p>{{ pregunta.respuesta }}</p>
+                </ng-container>
+
+                <ng-container *ngIf="pregunta.tipo === 'formulario'">
+                    <form>
+                    <input name="nombre" type="text" placeholder="Escriba su nombre" required />
+                    <input name="email" type="email" placeholder="Un correo electrónico" required />
+                    <input name="numeroTel" type="text" placeholder="Un número de teléfono" required />
+                    <textarea name="peticion" placeholder="¿Cuál es su petición?"></textarea>
+                    <input type="submit" value="Enviar" class="btn" />
+                    </form>
+                </ng-container>
+                </div>
+            </div>
+            </div>
         </div>
-        <form action=""></form>
-    </div>
+        </section>
+
 </main>
 <app-footer></app-footer>
